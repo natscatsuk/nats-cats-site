@@ -3,18 +3,17 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section className="py-16 sm:py-20 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Left: Content */}
           <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Premium Cat Care
-                <span className="block text-primary">You Can Trust</span>
+                Premium Vet-Nurse-Led Cat Sitting in Harpenden
               </h1>
-              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                Vet-nurse-led home care for your beloved cats. Professional, compassionate, and fully qualified care in the comfort of your home.
+              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Calm, safe and stress-free home care for your cat — delivered by a qualified veterinary nurse.
               </p>
             </div>
 
@@ -36,10 +35,15 @@ export default function Hero() {
                 <Link href="/booking">Check Availability</Link>
               </Button>
             </div>
+
+            {/* Reassurance line */}
+            <p className="text-sm text-gray-500 italic">
+              Serving Harpenden and surrounding areas within 3 miles.
+            </p>
           </div>
 
           {/* Right: Image Placeholder */}
-          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-primary/10 flex items-center justify-center">
             <div className="text-center space-y-2 p-8">
               <div className="w-32 h-32 mx-auto bg-primary/20 rounded-full flex items-center justify-center">
                 <svg
@@ -56,7 +60,7 @@ export default function Hero() {
                   />
                 </svg>
               </div>
-              <p className="text-sm text-gray-500 font-medium">Cat Image Placeholder</p>
+              <p className="text-sm text-gray-500 font-medium">Cat image / illustration here</p>
             </div>
           </div>
         </div>
@@ -64,4 +68,3 @@ export default function Hero() {
     </section>
   );
 }
-
