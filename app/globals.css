@@ -34,3 +34,9 @@
   }
 }
 
+@layer utilities {
+  .bg-cream {
+    background-color: #faf8f5;
+  }
+}
+
