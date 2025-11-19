@@ -19,7 +19,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-sm border-b border-gray-100">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm shadow-sm border-b border-[var(--nc-softBorder)]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Logo - Centered above nav */}
         <div className="flex justify-center py-4">
@@ -46,8 +46,8 @@ export default function Header() {
                 className={cn(
                   "px-4 py-2 text-sm font-medium rounded-md transition-colors",
                   pathname === link.href
-                    ? "text-primary bg-primary/5"
-                    : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                    ? "text-[var(--nc-royalBlue)] bg-[var(--nc-royalBlue)]/5"
+                    : "text-gray-700 hover:text-[var(--nc-royalBlue)] hover:bg-gray-50"
                 )}
               >
                 {link.label}
@@ -64,8 +64,8 @@ export default function Header() {
                 className={cn(
                   "px-3 py-1.5 text-xs font-medium rounded-md transition-colors w-full text-center",
                   pathname === link.href
-                    ? "text-primary bg-primary/5"
-                    : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                    ? "text-[var(--nc-royalBlue)] bg-[var(--nc-royalBlue)]/5"
+                    : "text-gray-700 hover:text-[var(--nc-royalBlue)] hover:bg-gray-50"
                 )}
               >
                 {link.label}
@@ -75,10 +75,7 @@ export default function Header() {
 
           {/* Book Button - Right Side */}
           <div className="ml-2 md:ml-4 flex-shrink-0">
-            <Button
-              asChild
-              className="bg-primary hover:bg-primary/90 text-white rounded-lg shadow-sm text-sm px-4 py-2 md:px-6 md:py-2"
-            >
+            <Button asChild variant="primary" size="sm">
               <Link href="/booking">Book a Visit</Link>
             </Button>
           </div>

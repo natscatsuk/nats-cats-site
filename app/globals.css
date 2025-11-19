@@ -25,13 +25,12 @@
     --ring: 210 100% 40%;
     --radius: 0.5rem;
     
-    /* Brand Colors */
-    --offWhite: #F7F8FC;
-    --royalBlue: #0052CC;
-    --royalGradientFrom: #0052CC;
-    --royalGradientTo: #003A99;
-    --goldAccent: #D4AF37;
-    --divider: #E2E4EA;
+    /* Nat's Cats Design Tokens */
+    --nc-offWhite: #F7F8FC;
+    --nc-royalBlue: #0052CC;
+    --nc-royalBlueDark: #003A99;
+    --nc-gold: #D4AF37;
+    --nc-softBorder: #E2E4EA;
   }
 }
 
@@ -49,23 +48,23 @@
 
 @layer utilities {
   .bg-cream {
-    background-color: var(--offWhite);
+    background-color: var(--nc-offWhite);
   }
   
   .bg-royal-gradient {
-    background: linear-gradient(135deg, var(--royalGradientFrom) 0%, var(--royalGradientTo) 100%);
+    background: linear-gradient(135deg, var(--nc-royalBlue) 0%, var(--nc-royalBlueDark) 100%);
   }
   
   .text-royal-blue {
-    color: var(--royalBlue);
+    color: var(--nc-royalBlue);
   }
   
   .text-gold {
-    color: var(--goldAccent);
+    color: var(--nc-gold);
   }
   
   .border-divider {
-    border-color: var(--divider);
+    border-color: var(--nc-softBorder);
   }
   
   .shadow-royal-glow {
@@ -73,7 +72,7 @@
   }
   
   .shadow-premium {
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
   }
   
   .shadow-float {

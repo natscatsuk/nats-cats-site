@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { Section } from "@/components/ui/section";
+import { Card } from "@/components/ui/card";
 
 export default function TrustBar() {
   const badges = [
@@ -13,8 +15,13 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="py-12 bg-white border-y border-divider">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <Section 
+      as="section" 
+      background="white" 
+      padding="md"
+      className="border-y border-[var(--nc-softBorder)]"
+    >
+      <Card variant="solid" className="p-6">
         <div className="flex flex-wrap justify-center gap-4">
           {badges.map((badge, index) => (
             <motion.div
@@ -28,11 +35,11 @@ export default function TrustBar() {
               <div
                 className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-white border border-transparent shadow-sm hover:shadow-md transition-all duration-300"
                 style={{
-                  background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #0052CC, #003A99) border-box",
+                  background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, var(--nc-royalBlue), var(--nc-royalBlueDark)) border-box",
                   border: "1px solid transparent",
                 }}
               >
-                <CheckCircle2 className="w-4 h-4 text-[#0052CC] flex-shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[var(--nc-royalBlue)] flex-shrink-0" />
                 <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
                   {badge}
                 </span>
@@ -40,7 +47,7 @@ export default function TrustBar() {
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </Card>
+    </Section>
   );
 }
