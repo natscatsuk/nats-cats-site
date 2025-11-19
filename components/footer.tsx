@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Business Info */}
           <div className="space-y-3">
             <h3 className="font-semibold text-lg text-gray-900">
-              Nat's Cats – Elite Home Care
+              Nat&apos;s Cats – Elite Home Care
             </h3>
             <p className="text-sm text-gray-600">
               Service area: Harpenden + 3 Miles
@@ -48,14 +48,14 @@ export default function Footer() {
           <div>
             <h4 className="font-medium text-sm text-gray-900 mb-4">Contact</h4>
             <p className="text-sm text-gray-600">
-              Get in touch to book your cat's care
+              Get in touch to book your cat&apos;s care
             </p>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-100">
           <p className="text-xs text-center text-gray-500">
-            © {new Date().getFullYear()} Nat's Cats – Elite Home Care. All rights reserved.
+            © {new Date().getFullYear()} Nat&apos;s Cats – Elite Home Care. All rights reserved.
           </p>
         </div>
       </div>

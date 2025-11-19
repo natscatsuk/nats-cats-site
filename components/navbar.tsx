@@ -33,7 +33,7 @@ export default function Navbar() {
               priority
             />
             <span className="font-semibold text-lg text-gray-900 hidden sm:inline-block">
-              Nat's Cats
+              Nat&apos;s Cats
             </span>
           </Link>
 
