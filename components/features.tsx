@@ -1,4 +1,7 @@
+"use client";
+
 import { Shield, Home, Heart } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -20,29 +23,40 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+    <section className="py-24 bg-[#F7F8FC]">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div
+              <motion.div
                 key={index}
-                className="p-6 sm:p-8 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="p-8 rounded-xl bg-white border border-gray-100 shadow-premium hover:shadow-float transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-primary" />
+                <div className="w-14 h-14 rounded-full bg-[#0052CC]/10 flex items-center justify-center mb-6">
+                  <Icon className="w-7 h-7 text-[#0052CC]" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

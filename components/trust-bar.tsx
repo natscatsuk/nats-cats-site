@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
+
 export default function TrustBar() {
   const badges = [
     "Qualified Veterinary Nurse",
@@ -8,19 +13,31 @@ export default function TrustBar() {
   ];
 
   return (
-    <section className="py-8 sm:py-12 bg-white border-y border-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+    <section className="py-12 bg-white border-y border-divider">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="flex flex-wrap justify-center gap-4">
           {badges.map((badge, index) => (
-            <div
+            <motion.div
               key={index}
-              className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-primary/30 transition-all"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group relative"
             >
-              <span className="text-primary text-sm sm:text-base">✅</span>
-              <span className="text-sm sm:text-base font-medium text-gray-700">
-                {badge}
-              </span>
-            </div>
+              <div
+                className="flex items-center gap-2.5 px-5 py-3 rounded-full bg-white border border-transparent shadow-sm hover:shadow-md transition-all duration-300"
+                style={{
+                  background: "linear-gradient(white, white) padding-box, linear-gradient(135deg, #0052CC, #003A99) border-box",
+                  border: "1px solid transparent",
+                }}
+              >
+                <CheckCircle2 className="w-4 h-4 text-[#0052CC] flex-shrink-0" />
+                <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                  {badge}
+                </span>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

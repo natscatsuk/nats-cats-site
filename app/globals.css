@@ -24,19 +24,59 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 210 100% 40%;
     --radius: 0.5rem;
+    
+    /* Brand Colors */
+    --offWhite: #F7F8FC;
+    --royalBlue: #0052CC;
+    --royalGradientFrom: #0052CC;
+    --royalGradientTo: #003A99;
+    --goldAccent: #D4AF37;
+    --divider: #E2E4EA;
   }
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-inter), system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair), serif;
   }
 }
 
 @layer utilities {
   .bg-cream {
-    background-color: #F7F8FC;
+    background-color: var(--offWhite);
+  }
+  
+  .bg-royal-gradient {
+    background: linear-gradient(135deg, var(--royalGradientFrom) 0%, var(--royalGradientTo) 100%);
+  }
+  
+  .text-royal-blue {
+    color: var(--royalBlue);
+  }
+  
+  .text-gold {
+    color: var(--goldAccent);
+  }
+  
+  .border-divider {
+    border-color: var(--divider);
+  }
+  
+  .shadow-royal-glow {
+    box-shadow: 0 4px 20px rgba(0, 82, 204, 0.15), 0 0 0 1px rgba(0, 82, 204, 0.1);
+  }
+  
+  .shadow-premium {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .shadow-float {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
   }
 }
-
