@@ -79,3 +79,46 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
   }
 }
+
+/* Hero Premium - Lottie Cat Animation Positioning */
+/* Wrapper around the word "Premium" */
+.hero-premium-word {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dotless i – inherits the same font but has no dot */
+.hero-premium-i {
+  font-family: inherit;
+  font-weight: inherit;
+  position: relative;
+}
+
+/* Cat container, positioned relative to the word "Premium" */
+.hero-premium-cat {
+  position: absolute;
+  pointer-events: none;
+  /* position the cat directly sitting on the U */
+  left: 3.08ch;
+  top: -1.21em;
+  width: clamp(7.41rem, 9.75vw, 9.36rem);
+}
+
+/* Lottie player itself */
+.hero-premium-cat-player {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* shift the blue ball to align with the i dot position */
+  transform: translateX(-7%) translateY(65%);
+}
+
+@media (max-width: 768px) {
+  .hero-premium-cat {
+    top: -1.03em;
+    left: 2.72ch;
+  }
+  .hero-premium-cat-player {
+    transform: translateX(-6%) translateY(62%);
+  }
+}

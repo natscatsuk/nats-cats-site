@@ -6,8 +6,19 @@ import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { FadeInUp } from "@/components/ui/motion";
 import { motion } from "framer-motion";
+import { CatYarn } from "@/components/decor/CatYarn";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [catAnimation, setCatAnimation] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/animations/cat-animate.json")
+      .then((res) => res.json())
+      .then((data) => setCatAnimation(data))
+      .catch((err) => console.error("Error loading animation:", err));
+  }, []);
   return (
     <Section 
       as="section" 
@@ -27,10 +38,31 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Content */}
           <FadeInUp className="space-y-8 text-center lg:text-left">
-            <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Premium Vet-Nurse-Led Cat Sitting in Harpenden
+            <div className="space-y-6 relative">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight relative pr-4 lg:pr-32 xl:pr-40">
+                <span className="hero-premium-word relative inline-block">
+                  Prem
+                  <span className="hero-premium-i">ı</span>
+                  um
+                  {/* Cat + blue ball animation anchored to the word */}
+                  {catAnimation && (
+                    <span className="hero-premium-cat" aria-hidden="true">
+                      <Lottie
+                        animationData={catAnimation}
+                        loop={true}
+                        autoplay={true}
+                        className="hero-premium-cat-player"
+                      />
+                    </span>
+                  )}
+                </span> Vet-Nurse-Led Cat Sitting in Harpenden
               </h1>
+              {/* Cat illustration - shown on mobile below heading */}
+              <div className="lg:hidden flex justify-center pt-4">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 opacity-90">
+                  <CatYarn />
+                </div>
+              </div>
               <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Calm, safe and stress-free home care for your cat — delivered by a qualified veterinary nurse.
               </p>
@@ -52,11 +84,8 @@ export default function Hero() {
             </p>
           </FadeInUp>
 
-          {/* Right: Image Card with Gradient Halo */}
-          <FadeInUp delay={0.2} className="relative w-full">
-            {/* Gradient Halo */}
-            <div className="absolute inset-0 bg-royal-gradient opacity-5 rounded-3xl blur-3xl transform scale-110" />
-            
+          {/* Right: Image Card */}
+          <FadeInUp delay={0.2} className="relative w-full z-10">
             <motion.div
               animate={{
                 y: [0, -10, 0],
@@ -66,12 +95,11 @@ export default function Hero() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative"
+              className="relative z-10"
             >
               <Card 
-                variant="glass" 
-                withGradientBorder
-                className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden flex items-center justify-center p-8"
+                variant="solid" 
+                className="relative z-10 w-full h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden flex items-center justify-center p-8"
               >
                 <div className="text-center space-y-2">
                   <div className="w-32 h-32 mx-auto bg-[var(--nc-royalBlue)]/10 rounded-full flex items-center justify-center">
