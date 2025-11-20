@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <Section 
       as="section" 
-      background="offWhite" 
+      background="transparent" 
       padding="xl"
       className="relative overflow-hidden"
     >

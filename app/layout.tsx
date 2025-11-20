@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-screen bg-cream text-gray-900 antialiased">
+      <body className="min-h-screen text-gray-900 antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <footer className="bg-white border-t border-gray-100 py-8">
