@@ -8,17 +8,36 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <section className="trust-bar">
-        <div className="trust-bar-inner">
-          <p className="trust-bar-title">Trusted, vet-nurse-led cat care:</p>
-          <div className="trust-badges">
-            <span className="trust-badge">RCVS-Registered Veterinary Nurse</span>
-            <span className="trust-badge">Qualified Veterinary Nurse</span>
-            <span className="trust-badge">Fully Insured</span>
-            <span className="trust-badge">DBS Checked</span>
-            <span className="trust-badge">Medication Trained</span>
-            <span className="trust-badge">Pet First Aid Trained</span>
-            <span className="trust-badge">Local Harpenden Specialist</span>
+      <section className="credentials">
+        <div className="trust-card">
+          <div className="trust-card-header">
+            <div className="trust-card-icon">
+              <span>🩺</span>
+            </div>
+            <div>
+              <p className="trust-card-eyebrow">CLINICAL-LEVEL CARE AT HOME</p>
+              <h3 className="trust-card-title">Why cat owners trust Nat&apos;s Cats</h3>
+              <p className="trust-card-subtitle">
+                Every visit is led by a qualified veterinary nurse – not a hobby sitter.
+              </p>
+            </div>
+          </div>
+
+          <div className="trust-pill-row">
+            {[
+              { label: "RCVS-Registered Veterinary Nurse", icon: "🩺" },
+              { label: "Qualified Veterinary Nurse", icon: "🩺" },
+              { label: "Fully Insured", icon: "🛡️" },
+              { label: "DBS Checked", icon: "✅" },
+              { label: "Medication Trained", icon: "💊" },
+              { label: "Pet First Aid Trained", icon: "🐾" },
+              { label: "Local Harpenden Specialist", icon: "📍" },
+            ].map((item) => (
+              <button key={item.label} className="trust-pill">
+                <span className="trust-pill-icon">{item.icon}</span>
+                <span>{item.label}</span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
