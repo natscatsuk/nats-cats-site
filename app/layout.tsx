@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
+import { SideNav } from "@/components/SideNav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="min-h-screen text-gray-900 antialiased">
-        <Header />
+        <SideNav />
         <main className="flex-1">{children}</main>
         <footer className="bg-white border-t border-gray-100 py-8">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">

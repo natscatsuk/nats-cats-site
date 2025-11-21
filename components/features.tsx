@@ -23,8 +23,8 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-24 bg-[#F7F8FC]">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="features-section bg-[#F7F8FC]">
+      <div className="features-inner">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

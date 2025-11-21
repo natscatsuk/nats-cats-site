@@ -1,0 +1,79 @@
+.pawBackground {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.paw {
+  position: absolute;
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  opacity: 0.08;
+  animation: floatUp linear infinite;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+}
+
+.paw1 {
+  left: 10%;
+  animation-duration: 28s;
+  animation-delay: 0s;
+}
+
+.paw2 {
+  left: 30%;
+  animation-duration: 34s;
+  animation-delay: 4s;
+}
+
+.paw3 {
+  left: 50%;
+  animation-duration: 24s;
+  animation-delay: 8s;
+}
+
+.paw4 {
+  left: 65%;
+  animation-duration: 36s;
+  animation-delay: 2s;
+}
+
+.paw5 {
+  left: 80%;
+  animation-duration: 32s;
+  animation-delay: 10s;
+}
+
+.paw6 {
+  left: 90%;
+  animation-duration: 40s;
+  animation-delay: 6s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate3d(-10px, 120%, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.08;
+  }
+  50% {
+    transform: translate3d(10px, 40%, 0);
+    opacity: 0.08;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(-5px, -20%, 0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .paw {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}
+
