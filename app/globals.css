@@ -189,16 +189,35 @@ body {
   display: none;
 }
 
-/* Premium text color - blue fill with smooth black outline using hybrid stroke + shadow */
-.premium-title {
-  color: #5ca4ff; /* exact light blue of the cat's ball */
-  font-weight: 800;
-  -webkit-text-stroke: 1.5px #000; /* thicker stroke for more prominent outline */
+/* Premium text - Clean blue fill with subtle navy outline */
+.hero-premium-title {
+  font-weight: 800; /* match existing heading weight */
+  color: #4c8eff; /* same as blue ball */
+  /* Remove any previous text-stroke or outline */
+  -webkit-text-stroke: 0;
   text-shadow:
-    0 0 2px #000,
-    0 0 3px #000; /* increased shadow for smoother, thicker outline */
-  paint-order: stroke fill; /* ensures stroke renders behind fill */
-  letter-spacing: 0.01em; /* slight spacing to help prevent visual overlap */
+    0 0 0.5px #08111f,
+    0.6px 0.6px 0 #08111f;
+}
+
+/* Legacy class for backward compatibility */
+.premium-title {
+  font-weight: 800;
+  color: #4c8eff;
+  -webkit-text-stroke: 0;
+  text-shadow:
+    0 0 0.5px #08111f,
+    0.6px 0.6px 0 #08111f;
+}
+
+/* For high DPI screens, slightly adjust to keep edges crisp */
+@media (min-resolution: 2dppx) {
+  .hero-premium-title,
+  .premium-title {
+    text-shadow:
+      0 0 0.3px #08111f,
+      0.5px 0.5px 0 #08111f;
+  }
 }
 
 /* Cat animation positioned above Premium word */
@@ -242,15 +261,21 @@ body {
 
 .hero {
   background: transparent !important;
-  padding-right: 180px;
+  /* padding-right removed - will be handled by responsive adjustments if needed */
   position: relative;
   z-index: 1;
 }
 
+/* Desktop: restore right padding for nav rail */
+@media (min-width: 1024px) {
+  .hero {
+    padding-right: 180px;
+  }
+}
+
 .hero-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem 3.5rem;
+  /* max-width and margin now handled by .page-shell */
+  padding: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: 3rem;
@@ -299,7 +324,7 @@ body {
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding-top: 2.5rem;
+    /* padding-top removed - handled by .page-section */
   }
 
   .hero-visual {
@@ -492,13 +517,12 @@ body {
 }
 
 .testimonials {
-  padding: 4rem 0 2rem;
+  /* padding now handled by .page-section */
   background: transparent;
 }
 
 .testimonials-inner {
-  max-width: 1120px;
-  margin: 0 auto;
+  /* max-width and margin now handled by .page-shell */
   text-align: center;
 }
 
@@ -513,7 +537,7 @@ body {
   font-size: 0.95rem;
   color: #6b7280;
   max-width: 560px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.5rem; /* Slightly increased for better spacing */
 }
 
 .testimonials-grid {
@@ -550,19 +574,18 @@ body {
 }
 
 .vet-nurse-benefits {
-  padding: 3rem 0;
+  /* padding now handled by .page-section */
   background: transparent;
 }
 
 .vet-nurse-inner {
-  max-width: 1120px;
-  margin: 0 auto;
+  /* max-width and margin now handled by .page-shell */
 }
 
 .vet-nurse-header {
   text-align: left;
   max-width: 640px;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem; /* Increased slightly from 2rem for better spacing */
 }
 
 .vet-nurse-title {
@@ -670,15 +693,7 @@ body {
   }
 }
 
-.howitworks {
-  padding: 4rem 0 3rem;
-  background: transparent;
-}
-
-.howitworks-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-}
+/* .howitworks section is now .section-process with .page-section */
 
 .howitworks-header {
   max-width: 620px;
@@ -756,7 +771,7 @@ body {
 }
 
 .pricing-strip {
-  padding: 2.5rem 0;
+  /* padding now handled by .page-section */
   background: transparent;
 }
 
@@ -802,9 +817,7 @@ body {
 }
 
 .features-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  /* max-width, margin, and padding now handled by .page-shell */
 }
 
 /* Top Logo - Right Side */
@@ -846,6 +859,13 @@ body {
   }
 }
 
+/* Ensure hero padding doesn't conflict with page-section on mobile */
+@media (max-width: 767px) {
+  .section-hero {
+    padding-top: 56px;
+  }
+}
+
 /* Right-hand nav rail positioning */
 .nats-nav-rail {
   position: fixed;
@@ -866,89 +886,57 @@ body {
   padding: 0;
 }
 
-/* Base pill */
+/* Base pill - Champagne-Gold Luxury Design */
 .nats-nav-pill {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 8.5rem;
-  padding: 0.7rem 1.9rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  color: #253047;
+  color: #0E1727;
+  cursor: pointer;
 
-  /* champagne glassmorphism look */
-  background:
-    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.95), rgba(255,255,255,0.8) 45%, rgba(240,233,223,0.9) 100%);
-  border: 1px solid rgba(229, 216, 193, 0.9);
+  /* Clean white centre, champagne-gold border, soft glow */
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.95), #faf7f0);
+  border: 1px solid rgba(228, 205, 157, 0.9);
   box-shadow:
-    0 14px 32px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(255, 255, 255, 0.8),
-    0 0 0 2px rgba(208, 188, 145, 0.55); /* soft champagne rim */
-  backdrop-filter: blur(18px);
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.6);
 
   transition:
-    transform 150ms ease,
-    box-shadow 150ms ease,
-    background 150ms ease,
-    color 150ms ease;
-}
-
-/* Subtle highlight stripe across the top of the pill */
-.nats-nav-pill::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.95),
-    rgba(255, 255, 255, 0.3),
-    transparent 60%
-  );
-  opacity: 0.9;
-  pointer-events: none;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
 }
 
 /* Label */
 .nats-nav-pill-label {
-  position: relative;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
 }
 
-/* Hover state – lift & slightly richer border */
+/* Hover state: gentle lift + subtle blue ring */
 .nats-nav-pill:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow:
-    0 18px 40px rgba(0, 0, 0, 0.22),
-    0 0 0 1px rgba(255, 255, 255, 0.9),
-    0 0 0 3px rgba(213, 190, 143, 0.85);
+    0 14px 28px rgba(0, 0, 0, 0.12),
+    0 0 0 2px rgba(76, 142, 255, 0.18);
 }
 
-/* Active state – subtle blue tint, stronger contrast */
+/* Active state: slightly stronger gold + soft blue tint */
 .nats-nav-pill--active {
-  background:
-    radial-gradient(
-      circle at 20% 0%,
-      rgba(255, 255, 255, 0.98),
-      rgba(232, 242, 255, 0.98) 45%,
-      rgba(205, 225, 255, 0.98) 100%
-    );
-  border-color: rgba(77, 137, 255, 0.9);
+  background: radial-gradient(circle at 20% 0%, #ffffff, #f5ebd6);
+  border-color: rgba(214, 186, 128, 1);
   box-shadow:
-    0 20px 44px rgba(22, 76, 167, 0.28),
-    0 0 0 1px rgba(255, 255, 255, 0.95),
-    0 0 0 3px rgba(34, 112, 255, 0.9);
-  color: #0f3f9e;
-}
-
-.nats-nav-pill--active .nats-nav-pill-label {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 14px 32px rgba(0, 0, 0, 0.18),
+    0 0 0 2px rgba(76, 142, 255, 0.22);
 }
 
 /* Small-screen tweaks so pills don't feel too huge */
@@ -957,11 +945,13 @@ body {
     top: 12rem;
     right: 1.4rem;
   }
+}
 
+/* Mobile adjustments: slightly smaller paddings */
+@media (max-width: 768px) {
   .nats-nav-pill {
-    min-width: 7.2rem;
-    padding: 0.55rem 1.4rem;
-    font-size: 0.72rem;
+    padding: 0.6rem 1.7rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -1011,4 +1001,39 @@ h1.hero-title {
   background: linear-gradient(90deg, #f6c66b, #f2a94f);
   border-radius: 100px;
   opacity: 0.65;
+}
+
+/* Page layout system - consistent spacing and alignment */
+.page-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.page-section {
+  /* Desktop (>= 1024px) */
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .page-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  .page-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  
+  /* Hero section reduced bottom padding on mobile */
+  .page-section.section-hero {
+    padding-bottom: 40px;
+  }
 }

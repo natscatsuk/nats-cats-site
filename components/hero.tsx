@@ -17,14 +17,14 @@ export default function Hero() {
       .catch((err) => console.error("Error loading animation:", err));
   }, []);
   return (
-    <section className="hero">
-      <div className="hero-inner">
+    <section id="home" className="page-section section-hero hero">
+      <div className="hero-inner page-shell">
         <div className="hero-text">
           <FadeInUp className="space-y-8 text-center lg:text-left">
             <div className="space-y-6 relative">
               <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight relative pr-4 lg:pr-32 xl:pr-40">
                 <span className="hero-premium-word">
-                  <span className="no-dot premium-title" aria-label="Premium">Premıum</span>
+                  <span className="no-dot premium-title hero-premium-title" aria-label="Premium">Premıum</span>
                   {/* Cat + blue ball animation positioned above Premium */}
                   {catAnimation && (
                     <span className="hero-premium-cat" aria-hidden="true">

@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function AboutStrip() {
   return (
-    <section className="py-24 bg-[#F7F8FC]">
-      <div className="container mx-auto px-6 max-w-6xl">
+    <section className="page-section section-meet-nat bg-[#F7F8FC]">
+      <div className="page-shell">
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Meet Nat – Your Vet-Nurse Cat Carer

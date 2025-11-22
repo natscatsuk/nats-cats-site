@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 
 export default function CtaFooter() {
   return (
-    <section className="relative py-28 bg-royal-gradient text-white overflow-hidden">
+    <section id="booking" className="page-section section-final-cta relative bg-royal-gradient text-white overflow-hidden">
       {/* Subtle pattern overlay */}
       <div 
         className="absolute inset-0 opacity-[0.05]"
@@ -13,7 +13,7 @@ export default function CtaFooter() {
         }}
       />
       
-      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+      <div className="page-shell relative z-10">
         <div className="text-center">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             Ready for calm, reliable cat care?
