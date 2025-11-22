@@ -1,5 +1,8 @@
 "use client";
 
+import { SectionShell } from "./SectionShell";
+import { FadeInWhenVisible } from "./FadeInWhenVisible";
+
 const features = [
   {
     title: "Vet-Nurse Expertise",
@@ -32,14 +35,17 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="page-section section-features features-section bg-white">
-      <div className="flex justify-center px-4 sm:px-6">
-        <div className="w-full max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+    <SectionShell
+      eyebrow="Premium care features"
+      title="Why Nat's Cats is different"
+      subtitle="Every visit combines clinical expertise with genuine care for your cat's comfort and wellbeing."
+      animationDelay="0.22s"
+    >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((feature, index) => (
+              <FadeInWhenVisible key={index} delay={index * 0.05}>
               <article
-                key={index}
-                className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] rounded-[16px] bg-white/98 border border-[#f1e3c6] shadow-[0_16px_40px_rgba(15,23,42,0.06)] ring-1 ring-slate-100/60 px-5 py-6 sm:px-6 sm:py-7 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]"
+                className="group relative rounded-[24px] bg-white/90 border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white px-6 py-7 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]"
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4c8eff] to-[#E6D0A3] text-white shadow-[0_8px_20px_rgba(76,142,255,0.35)]">
@@ -55,10 +61,9 @@ export default function Features() {
                   </div>
                 </div>
               </article>
+              </FadeInWhenVisible>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

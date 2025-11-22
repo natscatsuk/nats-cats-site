@@ -17,13 +17,13 @@ export function NatCard({
   variant = "light",
 }: Props) {
   const base =
-    "relative rounded-2xl border bg-[var(--nc-bg-card)] shadow-[var(--nc-shadow-soft)] transition-all duration-300";
+    "relative rounded-2xl border bg-[var(--nc-bg-card)] shadow-[0_18px_45px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out";
   const light =
-    "border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white hover:border-[var(--nc-gold-soft)]";
+    "border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white hover:border-[var(--nc-gold-soft)] hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]";
   const dark =
-    "border-slate-900/40 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-slate-50";
+    "border-slate-900/40 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-slate-50 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]";
   const pill =
-    "border-white/60 bg-white/70 backdrop-blur-sm hover:border-[var(--nc-gold-soft)]";
+    "border-white/60 bg-white/70 backdrop-blur-sm hover:border-[var(--nc-gold-soft)] hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]";
 
   const variantClass =
     variant === "dark" ? dark : variant === "pill" ? pill : light;

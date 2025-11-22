@@ -9,15 +9,25 @@ import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [catAnimation, setCatAnimation] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     fetch("/animations/cat-animate.json")
       .then((res) => res.json())
       .then((data) => setCatAnimation(data))
       .catch((err) => console.error("Error loading animation:", err));
+    
+    // Check if mobile to disable animations
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
   return (
-    <section id="home" className="page-section section-hero hero">
+    <section id="home" className="pt-16 pb-16 lg:pt-20 lg:pb-20 hero">
       {/* Paw particle effects - background only */}
       <div className="hero-paw-particles" aria-hidden="true">
         {Array.from({ length: 12 }).map((_, i) => {
@@ -65,21 +75,18 @@ export default function Hero() {
         })}
       </div>
 
-      <div className="hero-inner page-shell">
-        {/* Warm spotlight gradient behind house + Nat */}
-        <div className="hero-spotlight-gradient" aria-hidden="true"></div>
-
-        <div className="hero-text">
+      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div className="hero-text w-full lg:w-auto">
           <FadeInUp className="space-y-8 text-center lg:text-left">
             {/* Glass card wrapper for headline + tagline */}
-            <div className="hero-glass-card">
+            <div className="hero-glass-card fade-up-soft" style={{ animationDelay: '0.05s' }}>
               <div className="space-y-6 relative">
-                <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight relative pr-4 lg:pr-32 xl:pr-40">
+                <h1 className="hero-title font-serif text-[2.4rem] sm:text-[2.9rem] lg:text-[3.2rem] font-bold text-gray-900 leading-[1.05] relative pr-4 lg:pr-32 xl:pr-40">
                   <span className="hero-premium-word">
                     <span className="no-dot premium-title hero-premium-title" aria-label="Premium">Premıum</span>
                     {/* Cat + blue ball animation positioned above Premium */}
                     {catAnimation && (
-                      <span className="hero-premium-cat hero-cat-bounce" aria-hidden="true">
+                      <span className={`hero-premium-cat ${!isMobile ? "hero-cat-float" : ""}`} aria-hidden="true">
                         <Lottie
                           animationData={catAnimation}
                           loop={true}
@@ -114,28 +121,28 @@ export default function Hero() {
           </FadeInUp>
         </div>
 
-        <div className="hero-visual">
-          {/* Floor shadow under Nat + cats / front door */}
-          <div
-            className="hero-floor-shadow"
-            aria-hidden="true"
-          />
-          <Image
-            src="/images/single-house.png"
-            alt="Single House"
-            width={850}
-            height={850}
-            className="hero-house-image"
-            priority
-          />
-          <Image
-            src="/images/nat's-hero2.png"
-            alt="Nat the vet nurse with cats"
-            width={420}
-            height={520}
-            className="hero-nat"
-            priority
-          />
+        <div className="relative w-full flex items-center justify-center md:justify-end fade-up-soft overflow-visible" style={{ animationDelay: '0.12s' }}>
+          <div className="relative w-[420px] md:w-[520px] lg:w-[560px] overflow-visible">
+            {/* House */}
+            <Image
+              src="/images/single-house.png"
+              alt="Harpenden townhouse"
+              width={560}
+              height={640}
+              className="w-full h-auto drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
+              priority
+            />
+
+            {/* Nat on the doorstep */}
+            <Image
+              src="/images/nat's-hero2.png"
+              alt="Nat the vet nurse with two cats"
+              width={180}
+              height={220}
+              className="absolute bottom-[38px] left-1/2 -translate-x-1/2 h-auto w-[130px] md:bottom-[50px] md:w-[160px] lg:bottom-[56px] lg:w-[180px] z-10"
+              priority
+            />
+          </div>
         </div>
       </div>
     </section>

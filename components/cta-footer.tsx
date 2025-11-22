@@ -6,7 +6,7 @@ import { FadeInWhenVisible } from "./FadeInWhenVisible";
 
 export default function CtaFooter() {
   return (
-    <section id="booking" className="relative mt-10 rounded-t-[2.5rem] border-t border-white/10 bg-royal-gradient text-white overflow-hidden">
+    <section id="booking" className="relative -mx-4 sm:-mx-6 lg:-mx-8 mt-10 rounded-t-[2.5rem] border-t border-white/10 bg-royal-gradient text-white overflow-hidden">
       {/* Subtle pattern overlay */}
       <div 
         className="absolute inset-0 opacity-[0.03]"
@@ -18,9 +18,9 @@ export default function CtaFooter() {
       {/* Soft highlight at top */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/10 to-transparent" />
       
-      <div className="page-shell relative z-10 py-16 sm:py-20">
-        <FadeInWhenVisible>
-          <div className="text-center max-w-3xl mx-auto">
+      <div className="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <FadeInWhenVisible delay={0.45}>
+          <div className="text-center max-w-5xl mx-auto">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-[1.2] text-white">
               Ready for calm, reliable cat care?
             </h2>
@@ -32,7 +32,7 @@ export default function CtaFooter() {
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-[#0052CC] hover:bg-gray-50 rounded-full shadow-[0_12px_30px_rgba(0,0,0,0.25)] px-10 py-6 text-base font-semibold transition-all duration-250 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
+                className="bg-white text-[#0052CC] hover:bg-gray-50 rounded-full shadow-[0_18px_45px_rgba(15,23,42,0.30)] px-10 py-6 text-base font-semibold transition-all duration-200 hover:-translate-y-[1px] hover:shadow-[0_26px_70px_rgba(15,23,42,0.35)] active:translate-y-[0px] active:shadow-[0_14px_30px_rgba(15,23,42,0.35)]"
               >
                 <Link href="/booking">Book a Visit</Link>
               </Button>

@@ -35,7 +35,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen text-gray-900 antialiased relative">
         <PawNav />
-        <main className="flex-1 relative">
+        <main className="min-h-screen bg-[radial-gradient(circle_at_top,#f8f2e9_0%,#f3e6d6_40%,#f5f0ea_75%,#f7f3ee_100%)]">
           <Link href="/" className="top-logo">
             <Image
               src="/logo.png"
@@ -46,7 +46,9 @@ export default function RootLayout({
               priority
             />
           </Link>
-          {children}
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {children}
+          </div>
         </main>
         <footer className="border-t border-slate-200/70 bg-white/90">
           <div className="max-w-6xl mx-auto px-6 lg:px-8 py-8 md:py-10">
