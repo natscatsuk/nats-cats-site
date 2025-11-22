@@ -275,7 +275,7 @@ export default function Home() {
             <div className="rounded-3xl border border-white/70 bg-[var(--nc-bg-card)] p-6 shadow-[var(--nc-shadow-soft)] text-left">
               <div className="space-y-5 text-base sm:text-[16px] text-slate-600 leading-relaxed">
                 <p>
-                  Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat's Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
+                  Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat&apos;s Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
                 </p>
                 <p className="italic text-slate-500 text-[15px] leading-relaxed">
                   Your cat is never just another booking.
