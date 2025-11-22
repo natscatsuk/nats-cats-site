@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -31,6 +41,10 @@
     --nc-royalBlueDark: #003A99;
     --nc-gold: #D4AF37;
     --nc-softBorder: #E2E4EA;
+    
+    /* Typography Variables */
+    --font-heading: var(--font-playfair), var(--font-cormorant), "Cormorant Garamond", serif;
+    --font-body: var(--font-inter), "Inter", "Helvetica Neue", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   }
 }
 
@@ -62,8 +76,11 @@
     background-size: cover;
     min-height: 100vh;
     height: 100%;
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-weight: 400;
     font-feature-settings: "rlig" 1, "calt" 1;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
   }
 
   main {
@@ -71,7 +88,47 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair), serif;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: #1a1a1a;
+    font-optical-sizing: auto;
+  }
+  
+  h1 {
+    font-weight: 700;
+  }
+  
+  h2, h3 {
+    font-weight: 600;
+  }
+  
+  .hero-title-premium {
+    position: relative;
+    font-weight: 700;
+  }
+
+  /* optional subtle emphasis */
+  .hero-title-premium::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 60%;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f6c66b, #f2a94f);
+    opacity: 0.7;
+  }
+  
+  p, span, div, a, button, label, input, textarea, select {
+    font-family: var(--font-body);
+    color: #1a1a1a;
+  }
+  
+  button, .nats-nav-pill, [role="button"] {
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.2px;
   }
 }
 
@@ -123,13 +180,34 @@
   position: relative;
 }
 
-/* Cat container, positioned relative to the word "Premium" */
+/* Remove the dot from the i in Premium */
+.no-dot {
+  font-feature-settings: "liga" 0, "kern" 1;
+}
+
+.no-dot::after {
+  display: none;
+}
+
+/* Premium text color - blue fill with smooth black outline using hybrid stroke + shadow */
+.premium-title {
+  color: #5ca4ff; /* exact light blue of the cat's ball */
+  font-weight: 800;
+  -webkit-text-stroke: 1.5px #000; /* thicker stroke for more prominent outline */
+  text-shadow:
+    0 0 2px #000,
+    0 0 3px #000; /* increased shadow for smoother, thicker outline */
+  paint-order: stroke fill; /* ensures stroke renders behind fill */
+  letter-spacing: 0.01em; /* slight spacing to help prevent visual overlap */
+}
+
+/* Cat animation positioned above Premium word */
 .hero-premium-cat {
   position: absolute;
   pointer-events: none;
   /* position the cat directly sitting on the U */
-  left: 3.08ch;
-  top: -1.21em;
+  left: 2.78ch;
+  top: -1.41em;
   width: clamp(7.41rem, 9.75vw, 9.36rem);
 }
 
@@ -139,16 +217,26 @@
   height: auto;
   display: block;
   /* shift the blue ball to align with the i dot position */
-  transform: translateX(-7%) translateY(65%);
+  transform: translateX(-1.5%) translateY(62%); /* moved 0.5% left */
 }
 
 @media (max-width: 768px) {
   .hero-premium-cat {
-    top: -1.03em;
-    left: 2.72ch;
+    top: -1.20em;
+    left: 2.45ch;
   }
   .hero-premium-cat-player {
-    transform: translateX(-6%) translateY(62%);
+    transform: translateX(-0.5%) translateY(59%); /* moved 0.5% left */
+  }
+  
+  /* Hide scroll indicators on mobile */
+  .scroll-indicator,
+  .scroll-icon,
+  .scroll-hint,
+  .hero-scroll,
+  .scroll-down,
+  .mobile-scroll {
+    display: none !important;
   }
 }
 
@@ -721,7 +809,7 @@
 
 /* Top Logo - Right Side */
 .top-logo {
-  position: fixed;
+  position: absolute;
   top: 2rem;
   right: 2rem;
   left: auto;
@@ -743,69 +831,7 @@
   object-fit: contain;
 }
 
-/* Side Navigation */
-.side-nav {
-  position: fixed;
-  top: 14rem;
-  right: calc(1rem + 3%);
-  left: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: flex-end;
-  z-index: 50;
-}
-
-.side-nav-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.side-nav-btn {
-  display: block;
-  width: auto;
-  min-width: 110px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #1f3a56;
-  text-align: center;
-  white-space: nowrap;
-  transition:
-    transform 200ms ease-out,
-    box-shadow 200ms ease-out,
-    background-color 200ms ease-out,
-    color 200ms ease-out;
-}
-
-.side-nav-btn:hover {
-  transform: translateX(-4px);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-  background: rgba(243, 246, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: #0f4ac6;
-}
-
-.side-nav-active {
-  background: linear-gradient(135deg, #0f4ac6 0%, #0052CC 100%);
-  color: #ffffff;
-  box-shadow: 0 18px 45px rgba(15, 74, 198, 0.25);
-}
-
-.side-nav-active:hover {
-  background: linear-gradient(135deg, #0f4ac6 0%, #0052CC 100%);
-  color: #ffffff;
-  transform: translateX(-4px);
-  box-shadow: 0 22px 50px rgba(15, 74, 198, 0.3);
-}
-
-/* Responsive: move nav to bottom on smaller screens */
+/* Responsive adjustments */
 @media (max-width: 1024px) {
   .top-logo {
     width: 120px;
@@ -815,17 +841,174 @@
     left: auto;
   }
 
-  .side-nav {
-    right: 50%;
-    transform: translateX(50%);
-    top: auto;
-    bottom: 1.5rem;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-
   .hero {
     padding-right: 0;
   }
+}
+
+/* Right-hand nav rail positioning */
+.nats-nav-rail {
+  position: fixed;
+  top: 15rem;           /* moved lower to avoid logo overlap */
+  right: 2.75rem;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nats-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base pill */
+.nats-nav-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8.5rem;
+  padding: 0.7rem 1.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #253047;
+
+  /* champagne glassmorphism look */
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,255,255,0.95), rgba(255,255,255,0.8) 45%, rgba(240,233,223,0.9) 100%);
+  border: 1px solid rgba(229, 216, 193, 0.9);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.8),
+    0 0 0 2px rgba(208, 188, 145, 0.55); /* soft champagne rim */
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease,
+    color 150ms ease;
+}
+
+/* Subtle highlight stripe across the top of the pill */
+.nats-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.3),
+    transparent 60%
+  );
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Label */
+.nats-nav-pill-label {
+  position: relative;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* Hover state – lift & slightly richer border */
+.nats-nav-pill:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.9),
+    0 0 0 3px rgba(213, 190, 143, 0.85);
+}
+
+/* Active state – subtle blue tint, stronger contrast */
+.nats-nav-pill--active {
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 255, 255, 0.98),
+      rgba(232, 242, 255, 0.98) 45%,
+      rgba(205, 225, 255, 0.98) 100%
+    );
+  border-color: rgba(77, 137, 255, 0.9);
+  box-shadow:
+    0 20px 44px rgba(22, 76, 167, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.95),
+    0 0 0 3px rgba(34, 112, 255, 0.9);
+  color: #0f3f9e;
+}
+
+.nats-nav-pill--active .nats-nav-pill-label {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Small-screen tweaks so pills don't feel too huge */
+@media (max-width: 1024px) {
+  .nats-nav-rail {
+    top: 12rem;
+    right: 1.4rem;
+  }
+
+  .nats-nav-pill {
+    min-width: 7.2rem;
+    padding: 0.55rem 1.4rem;
+    font-size: 0.72rem;
+  }
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Premium heading styles */
+h1,
+h2,
+h3,
+.heading-display {
+  font-family: var(--font-heading), serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #151515;
+}
+
+.hero-title,
+h1.hero-title {
+  font-size: clamp(2.8rem, 3.6vw, 4rem);
+  line-height: 1.05;
+}
+
+/* Premium gold underline on "Premium" */
+.hero-title-premium {
+  position: relative;
+  font-weight: 700;
+}
+
+.hero-title-premium::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.1em;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #f6c66b, #f2a94f);
+  border-radius: 100px;
+  opacity: 0.65;
 }

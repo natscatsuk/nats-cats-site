@@ -8,36 +8,90 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <section className="credentials">
-        <div className="trust-card">
-          <div className="trust-card-header">
-            <div className="trust-card-icon">
-              <span>🩺</span>
-            </div>
-            <div>
-              <p className="trust-card-eyebrow">CLINICAL-LEVEL CARE AT HOME</p>
-              <h3 className="trust-card-title">Why cat owners trust Nat&apos;s Cats</h3>
-              <p className="trust-card-subtitle">
-                Every visit is led by a qualified veterinary nurse – not a hobby sitter.
-              </p>
-            </div>
-          </div>
+      <section className="mt-20 mb-20">
+        <div className="mx-auto max-w-6xl rounded-[32px] bg-gradient-to-br from-[#f8f3ea] via-[#fdfbf8] to-[#f1e4d3] p-[1.5px] shadow-[0_30px_80px_rgba(15,23,42,0.20),0_0_0_1.5px_rgba(217,194,142,0.5)]" style={{ filter: 'drop-shadow(0 0 1px rgba(217, 194, 142, 0.3))' }}>
+          <div className="relative flex flex-col gap-10 rounded-[30px] bg-white/92 px-8 py-8 md:px-12 md:py-10 lg:flex-row lg:items-center shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)]">
+            {/* Left: copy */}
+            <div className="flex-1 space-y-4">
+              <h2 className="text-2xl sm:text-[28px] lg:text-[32px] font-semibold leading-tight text-slate-900">
+                Why cat owners trust Nat&apos;s Cats
+              </h2>
 
-          <div className="trust-pill-row">
-            {[
-              { label: "RCVS-Registered Veterinary Nurse", icon: "🩺" },
-              { label: "Qualified Veterinary Nurse", icon: "🩺" },
-              { label: "Fully Insured", icon: "🛡️" },
-              { label: "DBS Checked", icon: "✅" },
-              { label: "Medication Trained", icon: "💊" },
-              { label: "Pet First Aid Trained", icon: "🐾" },
-              { label: "Local Harpenden Specialist", icon: "📍" },
-            ].map((item) => (
-              <button key={item.label} className="trust-pill">
-                <span className="trust-pill-icon">{item.icon}</span>
-                <span>{item.label}</span>
-              </button>
-            ))}
+              <p className="max-w-xl text-[15px] leading-relaxed text-slate-600">
+                Every visit is led by a qualified veterinary nurse – not a hobby sitter.
+                Clinical-grade care delivered with warmth and expertise in the comfort of your cat&apos;s own home.
+              </p>
+
+              <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/90 px-4 py-1.5 text-[14px] font-medium text-amber-800 shadow-[0_10px_25px_rgba(251,191,36,0.45)] border border-amber-100">
+                <span className="text-[13px] sm:text-[14px] font-semibold">
+                  5★
+                </span>
+                <span className="text-[16px] leading-none">★★★★★</span>
+                <span className="text-[13px] sm:text-[14px]">
+                  feedback from local cat owners
+                </span>
+              </div>
+            </div>
+
+            {/* Right: premium pill list */}
+            <div className="flex-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* Pill */}
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#5b8fd8] via-[#4a7bc8] to-[#6ba3e0] text-white shadow-[0_6px_16px_rgba(37,99,235,0.35)] text-[18px]">
+                    🛡️
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    RCVS-Registered Veterinary Nurse
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#d9773f] via-[#c8652f] to-[#e68a4f] text-white shadow-[0_6px_16px_rgba(249,115,22,0.35)] text-[18px]">
+                    🎓
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    Qualified Veterinary Nurse
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#4fb87a] via-[#3ea569] to-[#5fc98b] text-white shadow-[0_6px_16px_rgba(34,197,94,0.35)] text-[18px]">
+                    ✅
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    Fully Insured
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#6ba3d0] via-[#7b8fd8] to-[#9b7bc8] text-white shadow-[0_6px_16px_rgba(99,102,241,0.35)] text-[18px]">
+                    🔎
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    DBS Checked
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#d9778f] via-[#c8657f] to-[#e68a9f] text-white shadow-[0_6px_16px_rgba(236,72,153,0.35)] text-[18px]">
+                    💊
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    Medication Trained
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-full bg-white/95 px-4 py-2.5 shadow-[0_8px_20px_rgba(15,23,42,0.08)] border border-slate-100/60">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#d9773f] via-[#e6a84f] to-[#4fb87a] text-white shadow-[0_6px_16px_rgba(248,181,0,0.35)] text-[18px]">
+                    📍
+                  </span>
+                  <span className="text-[14px] font-medium text-slate-800">
+                    Local Harpenden Specialist
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
