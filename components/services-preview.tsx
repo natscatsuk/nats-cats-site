@@ -25,7 +25,7 @@ export default function ServicesPreview() {
 
         <div className="grid gap-6 md:grid-cols-3 md:gap-7">
           {/* Standard visit */}
-          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-white/98 border border-[#f1e3c6] shadow-[0_16px_40px_rgba(15,23,42,0.06)] ring-1 ring-slate-100/60 px-6 py-7 flex flex-col transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-white/98 border border-[#f1e3c6] shadow-[0_16px_40px_rgba(15,23,42,0.06)] ring-1 ring-slate-100/60 px-6 py-7 flex flex-col transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,0.15)] min-h-full">
             <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/90 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-amber-800 uppercase">
                 Most popular
@@ -60,7 +60,7 @@ export default function ServicesPreview() {
           </article>
 
           {/* Weekend */}
-          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-white/98 border border-[#f1e3c6] shadow-[0_16px_40px_rgba(15,23,42,0.06)] ring-1 ring-slate-100/60 px-6 py-7 flex flex-col transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-white/98 border border-[#f1e3c6] shadow-[0_16px_40px_rgba(15,23,42,0.06)] ring-1 ring-slate-100/60 px-6 py-7 flex flex-col transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,0.15)] min-h-full">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-50/90 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-sky-800 uppercase">
                 Weekend &amp; bank holidays
@@ -95,7 +95,7 @@ export default function ServicesPreview() {
           </article>
 
           {/* Extended / Featured */}
-          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-gradient-to-br from-[#0E1727] via-[#111827] to-[#0A0F1A] border border-[#4c8eff]/30 shadow-[0_22px_60px_rgba(15,23,42,0.25),0_0_0_1px_rgba(76,142,255,0.15)] ring-1 ring-slate-700/80 px-6 py-7 flex flex-col text-slate-100 transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_28px_70px_rgba(15,23,42,0.35),0_0_0_2px_rgba(76,142,255,0.2)]">
+          <article className="group relative rounded-2xl md:rounded-[20px] lg:rounded-[24px] bg-gradient-to-br from-[#1a2332] via-[#1e2838] to-[#141b26] border border-[#4c8eff]/40 shadow-[0_22px_60px_rgba(15,23,42,0.3),0_0_0_2px_rgba(76,142,255,0.2)] ring-1 ring-slate-700/80 px-6 py-7 flex flex-col text-slate-100 transition-all duration-250 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(15,23,42,0.4),0_0_0_3px_rgba(76,142,255,0.25)] min-h-full">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/20 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-sky-100 uppercase">
                 Premium care

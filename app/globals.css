@@ -42,6 +42,16 @@ body {
     --nc-gold: #D4AF37;
     --nc-softBorder: #E2E4EA;
     
+    /* Premium Design Tokens */
+    --nc-bg-cream: #f8f2ea;
+    --nc-bg-cream-soft: #fbf6f0;
+    --nc-bg-card: #ffffff;
+    --nc-gold-soft: #f4ce8b;
+    --nc-gold-strong: #e3a85a;
+    --nc-blue-primary: #4d8dff;
+    --nc-navy: #111827;
+    --nc-shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+    
     /* Typography Variables */
     --font-heading: var(--font-playfair), var(--font-cormorant), "Cormorant Garamond", serif;
     --font-body: var(--font-inter), "Inter", "Helvetica Neue", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -267,7 +277,7 @@ body {
   height: auto;
   display: block;
   /* shift the blue ball to align with the i dot position */
-  transform: translateX(-1.5%) translateY(62%); /* moved 0.5% left */
+  transform: translateX(-6%) translateY(62%); /* moved 1.5% to the right */
 }
 
 /* Hero CTA Button Styles */
@@ -303,7 +313,7 @@ body {
     left: 2.45ch;
   }
   .hero-premium-cat-player {
-    transform: translateX(-0.5%) translateY(59%); /* moved 0.5% left */
+    transform: translateX(-5%) translateY(59%); /* moved 1.5% to the right */
   }
   
   /* Hide scroll indicators on mobile */
@@ -371,21 +381,38 @@ body {
   color: rgba(0, 0, 0, 0.1);
 }
 
-/* Glass card for text container */
+/* Luxury hero text card */
 .hero-glass-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
-  padding: 32px 40px;
   position: relative;
+  border-radius: 36px;
+  background: linear-gradient(to bottom, #FBF5EE, #FFFDF9);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 28px 60px rgba(15, 23, 42, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.6);
+  padding: 40px;
   z-index: 10;
+}
+
+/* Subtle inner glow accent */
+.hero-glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.45),
+    transparent 55%
+  );
+  pointer-events: none;
+  opacity: 0.45;
 }
 
 @media (max-width: 768px) {
   .hero-glass-card {
-    padding: 24px 28px;
-    border-radius: 16px;
+    padding: 32px 28px;
+    border-radius: 28px;
   }
 }
 
@@ -421,6 +448,34 @@ body {
   align-items: flex-end;
   justify-content: center;
   overflow: visible;
+}
+
+/* Soft floor shadow under Nat + cats / front door */
+.hero-floor-shadow {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 6%;
+  width: 55%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0) 65%
+  );
+  opacity: 0.4;
+  filter: blur(12px);
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-floor-shadow {
+    width: 60%;
+    height: 20%;
+    bottom: 8%;
+  }
 }
 
 
@@ -1031,28 +1086,56 @@ body {
   /* Clean white centre, champagne-gold border, soft glow */
   background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.95), #faf7f0);
   border: 1px solid rgba(228, 205, 157, 0.9);
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
 
   transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease,
-    border-color 0.18s ease;
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    background-color 180ms ease;
+
+  /* Inner highlight ring - hidden by default */
+}
+
+.nats-nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
 }
 
 /* Label */
 .nats-nav-pill-label {
   white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
 
-/* Hover state: gentle lift + subtle blue ring */
+/* Hover state: premium micro-interaction */
 .nats-nav-pill:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.02);
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.98), #fefaf5);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.18);
+}
+
+.nats-nav-pill:hover::before {
+  opacity: 1;
+}
+
+/* Focus-visible state for keyboard users */
+.nats-nav-pill:focus-visible {
+  outline: none;
+  transform: translateY(-2px) scale(1.02);
   box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.12),
-    0 0 0 2px rgba(76, 142, 255, 0.18);
+    0 18px 40px rgba(37, 99, 235, 0.18),
+    0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.nats-nav-pill:focus-visible::before {
+  opacity: 1;
 }
 
 /* Active state: slightly stronger gold + soft blue tint */
@@ -1062,6 +1145,13 @@ body {
   box-shadow:
     0 14px 32px rgba(0, 0, 0, 0.18),
     0 0 0 2px rgba(76, 142, 255, 0.22);
+}
+
+.nats-nav-pill--active:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 18px 40px rgba(37, 99, 235, 0.18),
+    0 0 0 2px rgba(76, 142, 255, 0.25);
 }
 
 /* Small-screen tweaks so pills don't feel too huge */

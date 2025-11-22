@@ -115,6 +115,11 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
+          {/* Floor shadow under Nat + cats / front door */}
+          <div
+            className="hero-floor-shadow"
+            aria-hidden="true"
+          />
           <Image
             src="/images/single-house.png"
             alt="Single House"
