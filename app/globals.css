@@ -52,12 +52,13 @@ body {
   :root {
     --page-gradient: linear-gradient(
       180deg,
-      #faf8f5 0%,
-      #f5f2ef 20%,
-      #f0ede9 45%,
-      #ebe8e4 65%,
-      #f0ede9 85%,
-      #faf8f5 100%
+      #fefbf8 0%,
+      #faf6f2 15%,
+      #f5efe8 35%,
+      #f0e8e0 50%,
+      #f5efe8 70%,
+      #faf6f2 85%,
+      #fefbf8 100%
     );
   }
 
@@ -90,16 +91,30 @@ body {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 600;
-    color: #1a1a1a;
+    color: #0e1727;
     font-optical-sizing: auto;
+    line-height: 1.15;
   }
   
   h1 {
     font-weight: 700;
+    line-height: 1.1;
   }
   
-  h2, h3 {
+  h2 {
     font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.2;
+    color: #0e1727;
+  }
+  
+  h3 {
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  
+  p {
+    color: #475569;
   }
   
   .hero-title-premium {
@@ -196,6 +211,7 @@ body {
   /* Remove any previous text-stroke or outline */
   -webkit-text-stroke: 0;
   text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.18),
     0 0 0.5px #08111f,
     0.6px 0.6px 0 #08111f;
 }
@@ -206,6 +222,7 @@ body {
   color: #4c8eff;
   -webkit-text-stroke: 0;
   text-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.18),
     0 0 0.5px #08111f,
     0.6px 0.6px 0 #08111f;
 }
@@ -230,6 +247,20 @@ body {
   width: clamp(7.41rem, 9.75vw, 9.36rem);
 }
 
+/* Bounce animation for cat + blue ball */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.hero-cat-bounce {
+  animation: bounce 2.5s ease-in-out infinite;
+}
+
 /* Lottie player itself */
 .hero-premium-cat-player {
   width: 100%;
@@ -237,6 +268,33 @@ body {
   display: block;
   /* shift the blue ball to align with the i dot position */
   transform: translateX(-1.5%) translateY(62%); /* moved 0.5% left */
+}
+
+/* Hero CTA Button Styles */
+.hero-cta-primary {
+  background: #0A60FF !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 16px rgba(10, 96, 255, 0.25) !important;
+  border: none !important;
+}
+
+.hero-cta-primary:hover {
+  background: #0955e6 !important;
+  box-shadow: 0 8px 20px rgba(10, 96, 255, 0.35) !important;
+}
+
+.hero-cta-secondary {
+  border: 2px solid #0A60FF !important;
+  color: #0A60FF !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hero-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
 }
 
 @media (max-width: 768px) {
@@ -264,6 +322,71 @@ body {
   /* padding-right removed - will be handled by responsive adjustments if needed */
   position: relative;
   z-index: 1;
+  overflow: hidden; /* Prevent spotlight overflow on mobile */
+}
+
+/* Warm spotlight gradient behind house + Nat */
+.hero-spotlight-gradient {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  width: min(80vw, 750px);
+  height: min(80vw, 750px);
+  max-width: 100%;
+  max-height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 228, 200, 0.55),
+    rgba(255, 240, 227, 0.4),
+    rgba(250, 245, 240, 0.0)
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+  .hero-spotlight-gradient {
+    width: min(90vw, 550px);
+    height: min(90vw, 550px);
+    top: 25%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+}
+
+/* Paw particle effects - background only */
+.hero-paw-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-paw-particle {
+  filter: blur(2.5px);
+  transform: scale(0.6);
+  color: rgba(0, 0, 0, 0.1);
+}
+
+/* Glass card for text container */
+.hero-glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.08);
+  padding: 32px 40px;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .hero-glass-card {
+    padding: 24px 28px;
+    border-radius: 16px;
+  }
 }
 
 /* Desktop: restore right padding for nav rail */
@@ -281,6 +404,7 @@ body {
   gap: 3rem;
   align-items: center;
   background: transparent;
+  position: relative; /* For spotlight positioning */
 }
 
 .hero-text {
@@ -291,13 +415,14 @@ body {
 /* Right column container */
 .hero-visual {
   position: relative;
-  z-index: 5;
+  z-index: 6;
   min-height: 480px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   overflow: visible;
 }
+
 
 .hero-house-image {
   position: absolute;
@@ -1013,8 +1138,8 @@ h1.hero-title {
 
 .page-section {
   /* Desktop (>= 1024px) */
-  padding-top: 96px;
-  padding-bottom: 96px;
+  padding-top: 108px;
+  padding-bottom: 108px;
 }
 
 /* Tablet (768px - 1023px) */
