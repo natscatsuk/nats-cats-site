@@ -5,16 +5,33 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/booking", label: "Booking" },
-  { href: "/faqs", label: "FAQs" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", targetId: "home-hero" },
+  { href: "/about", label: "About", targetId: "about-nats-cats" },
+  { href: "/services", label: "Services", targetId: "services" },
+  { href: "/booking", label: "Booking", targetId: "booking" },
+  { href: "/faqs", label: "FAQs", targetId: "faqs" },
+  { href: "/contact", label: "Contact", targetId: null },
 ];
 
 export function PawNav() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    targetId?: string
+  ) => {
+    // Only intercept clicks on home page for smooth scrolling
+    if (isHomePage && targetId) {
+      event.preventDefault();
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+    // Otherwise, let Next.js Link handle navigation normally
+  };
 
   return (
     <nav className="nats-nav-rail">
@@ -29,6 +46,7 @@ export function PawNav() {
             <li key={item.href}>
               <Link
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href, item.targetId ?? undefined)}
                 className={clsx(
                   "nats-nav-pill",
                   isActive && "nats-nav-pill--active"

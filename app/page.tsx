@@ -18,13 +18,31 @@ const StepIcon = ({ step }: { step: number }) => (
   );
 
 export default function Home() {
-  const credentials = [
-    { icon: "🛡️", title: "RCVS-Registered Veterinary Nurse" },
-    { icon: "🎓", title: "Qualified Veterinary Nurse" },
-    { icon: "✅", title: "Fully Insured" },
-    { icon: "🔎", title: "DBS Checked" },
-    { icon: "💊", title: "Medication Trained" },
-    { icon: "📍", title: "Local Harpenden Specialist" },
+  const BADGES = [
+    {
+      title: "RCVS-Registered Veterinary Nurse",
+      src: "/images/badges/RCVS.png",
+    },
+    {
+      title: "Qualified Veterinary Nurse",
+      src: "/images/badges/Qualified.png",
+    },
+    {
+      title: "Fully Insured",
+      src: "/images/badges/insured.png",
+    },
+    {
+      title: "DBS Checked",
+      src: "/images/badges/dbs.png",
+    },
+    {
+      title: "Medication Trained",
+      src: "/images/badges/medication.png",
+    },
+    {
+      title: "Local Harpenden Specialist",
+      src: "/images/badges/local.png",
+    },
   ];
 
   const benefits = [
@@ -105,36 +123,84 @@ export default function Home() {
     <>
       <Hero />
       
-      {/* Credentials Section */}
-      <SectionShell
-        eyebrow="Clinical-level care at home"
-        title="Why cat owners trust Nat's Cats"
-        subtitle="Every visit is led by a qualified veterinary nurse – not a hobby sitter. Clinical-grade care delivered with warmth and expertise in the comfort of your cat's own home."
-        animationDelay="0.15s"
-      >
+      {/* Subtle decorative paw prints under hero */}
+      <div className="hidden lg:block relative max-w-5xl mx-auto px-6 -mt-8 mb-4" aria-hidden="true">
+        <div className="flex items-center gap-8 opacity-[0.06]">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <svg
+              key={i}
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="transform rotate-12"
+            >
+              <ellipse cx="12" cy="14" rx="4" ry="5" fill="currentColor" />
+              <circle cx="8" cy="8" r="2.5" fill="currentColor" />
+              <circle cx="12" cy="6" r="2.5" fill="currentColor" />
+              <circle cx="16" cy="8" r="2.5" fill="currentColor" />
+              <circle cx="10" cy="10" r="2" fill="currentColor" />
+              <circle cx="14" cy="10" r="2" fill="currentColor" />
+            </svg>
+          ))}
+              </div>
+            </div>
+
+      {/* Credentials Section - peeks under hero on desktop */}
+      <div className="mt-12 lg:mt-20">
+        <SectionShell
+          id="trust"
+          eyebrow="Clinical-level care at home"
+          title="Why cat owners trust Nat's Cats"
+          subtitle="Every visit is led by a qualified veterinary nurse – not a hobby sitter. Clinical-grade care delivered with warmth and expertise in the comfort of your cat's own home."
+          animationDelay="0.15s"
+        >
         <FadeInWhenVisible>
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/95 px-4 py-1.5 text-[14px] font-medium text-amber-800 shadow-[0_6px_20px_rgba(251,191,36,0.3)] border border-amber-100/80 mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/95 px-4 py-2 text-[14px] font-medium text-amber-800 shadow-[0_8px_24px_rgba(251,191,36,0.35)] border border-amber-100/80 mb-6">
                 <span className="text-[14px] font-semibold">🐾</span>
             <span className="text-[13px] sm:text-[14px] font-semibold">5.0</span>
                 <span className="text-[16px] leading-none">★★★★★</span>
             <span className="text-[13px] sm:text-[14px]">from local cat owners</span>
-          </div>
+                </div>
         </FadeInWhenVisible>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {credentials.map((cred, index) => (
-            <NatCard
-              key={index}
-              variant="pill"
-              icon={<span className="text-xs">{cred.icon}</span>}
-              title={cred.title}
-              delay={index * 0.05}
-            />
-          ))}
-        </div>
+        <div className="mx-auto max-w-6xl">
+          <section
+            id="trust-badges"
+            className="mt-10 sm:mt-12 lg:mt-14"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+              {BADGES.map((badge) => (
+                <article
+                  key={badge.title}
+                  className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-6 py-7 lg:px-7 lg:py-8"
+                >
+                  <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20">
+                    <Image
+                      src={badge.src}
+                      alt={badge.title}
+                      fill
+                      sizes="(max-width: 640px) 64px, 80px"
+                      className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
+                    />
+                </div>
+                  <p className="text-center text-[0.95rem] sm:text-base leading-snug text-[#182235] font-medium">
+                    {badge.title}
+                  </p>
+                </article>
+              ))}
+                </div>
+          </section>
+                </div>
       </SectionShell>
+                </div>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* Benefits Section */}
       <SectionShell
+        id="about-nats-cats"
         eyebrow="Benefits of vet-nurse cat care"
         title="Why cat owners choose Nat for clinical-level home care"
         subtitle="You're not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss."
@@ -150,11 +216,17 @@ export default function Home() {
               delay={index * 0.05}
             />
           ))}
-        </div>
+                </div>
       </SectionShell>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* Features Section */}
       <Features />
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* How It Works Section */}
       <SectionShell
@@ -180,8 +252,14 @@ export default function Home() {
         </FadeInWhenVisible>
       </SectionShell>
 
+      {/* Section Divider */}
+      <div className="section-divider" />
+
       {/* Services Preview */}
       <ServicesPreview />
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* Testimonials Section */}
       <SectionShell
@@ -201,8 +279,8 @@ export default function Home() {
                 <span>★</span>
                 <span>★</span>
                 <span>★</span>
-              </div>
-              
+          </div>
+
               {/* Highlight line */}
               <p className="text-sm font-semibold text-[#f5d9a5] mb-3">
                 The best decision we made for our anxious cat.
@@ -217,8 +295,8 @@ export default function Home() {
               <div className="pt-3 border-t border-slate-700/50">
                 <p className="text-sm font-semibold text-white mb-1">Ben & Tara</p>
                 <p className="text-xs text-slate-300">Harpenden cat owner</p>
-              </div>
-            </div>
+                      </div>
+                    </div>
           </FadeInWhenVisible>
           
           {/* Secondary testimonials */}
@@ -229,7 +307,7 @@ export default function Home() {
                   Nat was calm, gentle and incredibly professional. Our shy rescue cat actually came out for her — unheard of!
                 </p>
                 <p className="text-xs font-medium text-slate-900">– Sarah, Harpenden</p>
-              </div>
+                      </div>
             </FadeInWhenVisible>
             
             <FadeInWhenVisible delay={0.1}>
@@ -247,11 +325,14 @@ export default function Home() {
                   Our senior cat needs daily medication — Nat handled everything perfectly. So reassuring.
                 </p>
                 <p className="text-xs font-medium text-slate-900">– Harriet, Harpenden</p>
-              </div>
+            </div>
             </FadeInWhenVisible>
-          </div>
-        </div>
+                </div>
+              </div>
       </SectionShell>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* FAQ Section */}
       <SectionShell
@@ -263,6 +344,9 @@ export default function Home() {
       >
         <NatAccordion items={faqItems} />
       </SectionShell>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
 
       {/* About Nat Section */}
       <SectionShell
@@ -282,8 +366,8 @@ export default function Home() {
                 </p>
                 <p className="italic text-slate-500 text-[15px] leading-relaxed">
                   Your cat is never just another booking.
-                </p>
-              </div>
+            </p>
+          </div>
               </div>
             <div className="flex justify-center">
               <div className="relative w-full max-w-md rounded-2xl lg:rounded-[24px] shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-slate-100/60 overflow-hidden bg-white/98 border border-white/70 flex items-center justify-center aspect-square max-h-[500px] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
@@ -295,9 +379,9 @@ export default function Home() {
                   className="object-contain w-full h-full p-6"
                   priority
                 />
-              </div>
           </div>
           </div>
+        </div>
         </FadeInWhenVisible>
       </SectionShell>
 

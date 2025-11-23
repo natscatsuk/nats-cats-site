@@ -27,7 +27,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="pt-16 pb-16 lg:pt-20 lg:pb-20 hero">
+    <section id="home-hero" className="pt-16 pb-10 lg:pt-20 lg:pb-12 hero">
       {/* Paw particle effects - background only */}
       <div className="hero-paw-particles" aria-hidden="true">
         {Array.from({ length: 12 }).map((_, i) => {
@@ -122,7 +122,7 @@ export default function Hero() {
         </div>
 
         <div className="relative w-full flex items-center justify-center md:justify-end fade-up-soft overflow-visible" style={{ animationDelay: '0.12s' }}>
-          <div className="relative w-[420px] md:w-[520px] lg:w-[560px] overflow-visible">
+          <div className="relative w-[420px] md:w-[520px] lg:w-[560px] overflow-visible" style={{ transform: 'translateY(-10%) translateX(-5%)' }}>
             {/* House */}
             <Image
               src="/images/single-house.png"
