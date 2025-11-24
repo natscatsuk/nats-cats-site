@@ -1,0 +1,95 @@
+import { NavItem } from "@/types/nav";
+
+export const NAV_ITEMS: NavItem[] = [
+  {
+    id: "home",
+    href: "/",
+    targetId: "home-hero",
+    pillLabel: "HOME",
+    sectionLabel: "HOME",
+    title: "Premium Home Cat Care",
+    description:
+      "Clinical-grade care for your cat in the comfort of your own home.",
+    bullets: [
+      "Led by a qualified veterinary nurse",
+      "Low-stress home visits in familiar surroundings",
+      "Serving Harpenden and nearby areas",
+    ],
+    iconSrc: "/badges/local.png",
+  },
+  {
+    id: "about",
+    href: "/about",
+    targetId: "about-nats-cats",
+    pillLabel: "ABOUT",
+    sectionLabel: "ABOUT",
+    title: "About Nat’s Cats",
+    description: "A vet-nurse led service focused on calm, welfare-based care.",
+    bullets: [
+      "Years of clinical feline experience",
+      "Fully insured & DBS checked",
+      "Medication and special-needs care",
+    ],
+    iconSrc: "/badges/qualified.png",
+  },
+  {
+    id: "services",
+    href: "/services",
+    targetId: "services",
+    pillLabel: "SERVICES",
+    sectionLabel: "SERVICES",
+    title: "Services Nat’s Cats Offers",
+    description: "Flexible visit options tailored around your cat’s needs.",
+    bullets: [
+      "Standard daily visits",
+      "Weekend or bank-holiday cover",
+      "Bespoke plans for nervous or elderly cats",
+    ],
+    iconSrc: "/badges/medication.png",
+  },
+  {
+    id: "booking",
+    href: "/booking",
+    targetId: "booking",
+    pillLabel: "BOOKING",
+    sectionLabel: "BOOKING",
+    title: "Simple, Flexible Booking",
+    description: "Check availability and book your visits online.",
+    bullets: [
+      "Quick availability check",
+      "Clear pricing with no hidden fees",
+      "Secure online booking form",
+    ],
+    iconSrc: "/badges/insured.png",
+  },
+  {
+    id: "faqs",
+    href: "/faqs",
+    targetId: "faqs",
+    pillLabel: "FAQS",
+    sectionLabel: "FAQS",
+    title: "Common Questions from Cat Owners",
+    description: "Quick answers to the questions Nat is asked most often.",
+    bullets: [
+      "What areas do you cover?",
+      "Will the same person visit my cat each time?",
+      "Can you give my cat medication?",
+    ],
+    iconSrc: "/badges/dbs.png",
+  },
+  {
+    id: "contact",
+    href: "/contact",
+    pillLabel: "CONTACT",
+    sectionLabel: "CONTACT",
+    title: "Get in Touch with Nat",
+    description: "Ask a question, check dates or arrange a meet & greet.",
+    bullets: [
+      "Fast response via email or form",
+      "Share your cat’s routine and needs",
+      "No-obligation introductory chat",
+    ],
+    iconSrc: "/badges/rcvs.png",
+  },
+];
+

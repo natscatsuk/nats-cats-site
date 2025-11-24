@@ -68,6 +68,11 @@ export default function Home() {
     },
   ];
 
+  const vetNurseBenefits = benefits.map((benefit, index) => ({
+    id: String(index + 1).padStart(2, "0"),
+    ...benefit,
+  }));
+
   const steps = [
     {
       step: 1,
@@ -148,7 +153,7 @@ export default function Home() {
             </div>
 
       {/* Credentials Section - peeks under hero on desktop */}
-      <div className="mt-12 lg:mt-20">
+      <div className="mt-10 sm:mt-12 lg:mt-20">
         <SectionShell
           id="trust"
           eyebrow="Clinical-level care at home"
@@ -169,11 +174,11 @@ export default function Home() {
             id="trust-badges"
             className="mt-10 sm:mt-12 lg:mt-14"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {BADGES.map((badge) => (
                 <article
                   key={badge.title}
-                  className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-6 py-7 lg:px-7 lg:py-8"
+                  className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] text-center shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-8"
                 >
                   <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20">
                     <Image
@@ -184,7 +189,7 @@ export default function Home() {
                       className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
                     />
                 </div>
-                  <p className="text-center text-[0.95rem] sm:text-base leading-snug text-[#182235] font-medium">
+                  <p className="text-center text-sm sm:text-base leading-snug text-[#182235] font-medium">
                     {badge.title}
                   </p>
                 </article>
@@ -199,25 +204,60 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* Benefits Section */}
-      <SectionShell
-        id="about-nats-cats"
-        eyebrow="Benefits of vet-nurse cat care"
-        title="Why cat owners choose Nat for clinical-level home care"
-        subtitle="You're not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss."
-        animationDelay="0.2s"
-      >
-        <div className="grid gap-4 sm:grid-cols-2">
-          {benefits.map((benefit, index) => (
-            <NatCard
-              key={index}
-              icon={<span className="text-xs">{benefit.icon}</span>}
-              title={benefit.title}
-              body={benefit.body}
-              delay={index * 0.05}
-            />
-          ))}
+      <section className="feature-section" id="about-nats-cats">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-0">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+            Benefits of vet-nurse cat care
+          </p>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 lg:text-[2.35rem]">
+            Why cat owners choose Nat for clinical-level home care
+          </h2>
+          <p className="mt-4 max-w-3xl text-[0.97rem] leading-relaxed text-slate-600">
+            You&apos;re not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="inline-flex items-center gap-3 rounded-full border border-sky-100 bg-white/80 px-5 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.06)] backdrop-blur-sm">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-[0_0_0_3px_rgba(255,255,255,0.7)]">
+                <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none">
+                  <path
+                    d="M10 4v12M4 10h12"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              <span className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-slate-700">
+                Vet-nurse advantages at a glance
+              </span>
+            </div>
+            <p className="text-xs text-slate-500">
+              4 ways Nat&apos;s care goes beyond a hobby sitter.
+            </p>
+          </div>
+
+          <div className="feature-grid mt-10">
+            {vetNurseBenefits.map((item) => (
+              <article key={item.id} className="feature-card">
+                <div className="feature-card-header">
+                  <div className="relative flex flex-shrink-0 items-center justify-center">
+                    <div className="absolute inset-0 scale-[1.45] rounded-full bg-[rgba(72,115,255,0.2)] blur-2xl -z-10" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 text-lg text-white shadow-[0_14px_30px_rgba(15,23,42,0.35)] animate-benefit-float">
+                      <span className="text-base drop-shadow-sm">{item.icon}</span>
+                    </div>
+                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900 px-2 py-[2px] text-[0.65rem] font-semibold text-white shadow-[0_6px_16px_rgba(15,23,42,0.4)]">
+                      {item.id}
+                    </span>
+                  </div>
                 </div>
-      </SectionShell>
+                <h3 className="feature-card-title">{item.title}</h3>
+                <p className="feature-card-body">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -229,28 +269,30 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* How It Works Section */}
-      <SectionShell
-        eyebrow="Simple, clinical-grade visit flow"
-        title="How Nat's cat sitting works"
-        animationDelay="0.25s"
-      >
-        <div className="grid gap-4 sm:grid-cols-3">
-          {steps.map((step, index) => (
-            <NatCard
-              key={index}
-              icon={<StepIcon step={step.step} />}
-              title={step.title}
-              body={step.body}
-              delay={index * 0.02}
-            />
-          ))}
-        </div>
-        <FadeInWhenVisible delay={0.1}>
-          <p className="mt-6 text-center text-sm text-slate-500">
-            Home visits from <strong>£XX per visit</strong> · Daily photo updates included · Medication support available on request
-          </p>
-        </FadeInWhenVisible>
-      </SectionShell>
+      <section className="feature-section">
+        <SectionShell
+          eyebrow="Simple, clinical-grade visit flow"
+          title="How Nat's cat sitting works"
+          animationDelay="0.25s"
+        >
+          <div className="feature-grid">
+            {steps.map((step, index) => (
+              <article key={index} className="feature-card">
+                <div className="feature-card-header">
+                  <StepIcon step={step.step} />
+                </div>
+                <h3 className="feature-card-title">{step.title}</h3>
+                <p className="feature-card-body">{step.body}</p>
+              </article>
+            ))}
+          </div>
+          <FadeInWhenVisible delay={0.1}>
+            <p className="mt-6 text-center text-sm text-slate-500">
+              Home visits from <strong>£XX per visit</strong> · Daily photo updates included · Medication support available on request
+            </p>
+          </FadeInWhenVisible>
+        </SectionShell>
+      </section>
 
       {/* Section Divider */}
       <div className="section-divider" />

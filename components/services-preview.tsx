@@ -3,17 +3,18 @@ import { FadeInWhenVisible } from "./FadeInWhenVisible";
 
 export default function ServicesPreview() {
   return (
-    <SectionShell
-      id="services"
-      eyebrow="Visit options"
-      title="Choose the visit that fits your cat"
-      subtitle="Every cat is different. Pick the visit length that matches their routine, energy level and medical needs."
-      animationDelay="0.27s"
-    >
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="feature-section">
+      <SectionShell
+        id="services"
+        eyebrow="Visit options"
+        title="Choose the visit that fits your cat"
+        subtitle="Every cat is different. Pick the visit length that matches their routine, energy level and medical needs."
+        animationDelay="0.27s"
+      >
+        <div className="feature-grid">
           {/* Standard visit */}
           <FadeInWhenVisible delay={0.02}>
-          <article className="group relative rounded-[24px] bg-white/90 border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white px-6 py-7 flex flex-col shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)] min-h-full">
+          <article className="feature-card">
             <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/90 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-amber-800 uppercase">
                 Most popular
@@ -50,7 +51,7 @@ export default function ServicesPreview() {
 
           {/* Weekend */}
           <FadeInWhenVisible delay={0.04}>
-          <article className="group relative rounded-[24px] bg-white/90 border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white px-6 py-7 flex flex-col shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)] min-h-full">
+          <article className="feature-card">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-50/90 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-sky-800 uppercase">
                 Weekend &amp; bank holidays
@@ -87,7 +88,7 @@ export default function ServicesPreview() {
 
           {/* Extended / Featured */}
           <FadeInWhenVisible delay={0.06}>
-          <article className="group relative rounded-[24px] bg-gradient-to-br from-[#1a2332] via-[#1e2838] to-[#141b26] border border-[#4c8eff]/40 px-6 py-7 flex flex-col text-slate-100 shadow-[0_24px_60px_rgba(15,23,42,0.10)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)] min-h-full">
+          <article className="feature-card bg-gradient-to-br from-[#1a2332] via-[#1e2838] to-[#141b26] border-[#4c8eff]/40 text-slate-100">
             <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/20 px-3 py-1 mb-4 w-fit">
               <span className="text-[0.75rem] font-medium tracking-wide text-sky-100 uppercase">
                 Premium care
@@ -122,6 +123,7 @@ export default function ServicesPreview() {
           </article>
           </FadeInWhenVisible>
         </div>
-    </SectionShell>
+      </SectionShell>
+    </section>
   );
 }

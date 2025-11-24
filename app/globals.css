@@ -1027,8 +1027,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 8.5rem;
-  padding: 0.8rem 2.5rem;
+  width: 9.5rem;
+  max-width: 100%;
+  min-width: 9.5rem;
+  padding: 0.65rem 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -1109,6 +1113,43 @@ body {
     0 0 0 2px rgba(76, 142, 255, 0.25);
 }
 
+/* === Nav hover card (Pixar pop) === */
+.nav-hover-card {
+  position: fixed;
+  max-width: min(640px, 92vw);
+  will-change: transform, opacity;
+}
+
+.paw-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  object-fit: contain;
+  transform: translateY(1px);
+}
+
+.paw-icon.visible {
+  opacity: 1;
+}
+
+@keyframes benefit-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-benefit-float {
+  animation: benefit-float 4.2s ease-in-out infinite;
+}
+
 /* Small-screen tweaks so pills don't feel too huge */
 @media (max-width: 1024px) {
   .nats-nav-rail {
@@ -1120,7 +1161,9 @@ body {
 /* Mobile adjustments: slightly smaller paddings */
 @media (max-width: 768px) {
   .nats-nav-pill {
-    padding: 0.6rem 1.7rem;
+    width: 8.5rem;
+    min-width: 8.5rem;
+    padding: 0.55rem 1.25rem;
     font-size: 0.8rem;
   }
 }
@@ -1256,6 +1299,80 @@ h1.hero-title {
 @media (min-width: 1024px) {
   .section-divider {
     margin: 72px auto 72px;
+  }
+}
+
+/* === Feature Grid System (3-column premium layout) === */
+
+.feature-section {
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.feature-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.75rem 2rem;
+  border-radius: 24px;
+  background: #fef8ee;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.06),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 22px 55px rgba(15, 23, 42, 0.10),
+    0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card-title {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: #151823;
+  margin-bottom: 0.45rem;
+}
+
+.feature-card-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b4f5c;
+}
+
+@media (max-width: 1100px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1.5rem;
   }
 }
 

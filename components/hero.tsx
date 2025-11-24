@@ -27,7 +27,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home-hero" className="pt-16 pb-10 lg:pt-20 lg:pb-12 hero">
+    <section
+      id="home-hero"
+      className="hero pt-12 pb-8 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-12"
+    >
       {/* Paw particle effects - background only */}
       <div className="hero-paw-particles" aria-hidden="true">
         {Array.from({ length: 12 }).map((_, i) => {
@@ -75,18 +78,29 @@ export default function Hero() {
         })}
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-16">
         <div className="hero-text w-full lg:w-auto">
-          <FadeInUp className="space-y-8 text-center lg:text-left">
+          <FadeInUp className="space-y-6 text-center lg:text-left sm:space-y-8">
             {/* Glass card wrapper for headline + tagline */}
-            <div className="hero-glass-card fade-up-soft" style={{ animationDelay: '0.05s' }}>
+            <div
+              className="hero-glass-card fade-up-soft rounded-[32px] px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10"
+              style={{ animationDelay: "0.05s" }}
+            >
               <div className="space-y-6 relative">
-                <h1 className="hero-title font-serif text-[2.4rem] sm:text-[2.9rem] lg:text-[3.2rem] font-bold text-gray-900 leading-[1.05] relative pr-4 lg:pr-32 xl:pr-40">
+                <h1 className="hero-title font-serif text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold text-gray-900 leading-[1.05] relative pr-2 lg:pr-32 xl:pr-40">
                   <span className="hero-premium-word">
-                    <span className="no-dot premium-title hero-premium-title" aria-label="Premium">Premıum</span>
+                    <span
+                      className="no-dot premium-title hero-premium-title"
+                      aria-label="Premium"
+                    >
+                      Premıum
+                    </span>
                     {/* Cat + blue ball animation positioned above Premium */}
                     {catAnimation && (
-                      <span className={`hero-premium-cat ${!isMobile ? "hero-cat-float" : ""}`} aria-hidden="true">
+                      <span
+                        className={`hero-premium-cat ${!isMobile ? "hero-cat-float" : ""}`}
+                        aria-hidden="true"
+                      >
                         <Lottie
                           animationData={catAnimation}
                           loop={true}
@@ -98,18 +112,28 @@ export default function Hero() {
                   </span>{" "}
                   Home Cat Care in Harpenden
                 </h1>
-                <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 max-w-md sm:max-w-xl mx-auto lg:mx-0 leading-relaxed">
                   Led by a qualified veterinary nurse — not a hobby sitter. Calm, clinical-grade care in the comfort of your cat&apos;s own home.
                 </p>
               </div>
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button asChild variant="primary" size="lg" className="hero-cta-primary">
+            <div className="flex w-full max-w-md mx-auto max-sm:flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <Button
+                asChild
+                variant="primary"
+                size="lg"
+                className="hero-cta-primary w-full sm:w-auto"
+              >
                 <Link href="/booking">Book a Visit</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="hero-cta-secondary">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="hero-cta-secondary w-full sm:w-auto"
+              >
                 <Link href="/booking">Check Dates & Availability</Link>
               </Button>
             </div>
@@ -121,15 +145,18 @@ export default function Hero() {
           </FadeInUp>
         </div>
 
-        <div className="relative w-full flex items-center justify-center md:justify-end fade-up-soft overflow-visible" style={{ animationDelay: '0.12s' }}>
-          <div className="relative w-[420px] md:w-[520px] lg:w-[560px] overflow-visible" style={{ transform: 'translateY(-10%) translateX(-5%)' }}>
+        <div
+          className="relative w-full flex items-center justify-center lg:justify-end fade-up-soft overflow-visible mt-6 lg:mt-0"
+          style={{ animationDelay: "0.12s" }}
+        >
+          <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-none lg:w-[520px] xl:w-[560px] overflow-visible lg:-translate-y-[10%] lg:-translate-x-[5%]">
             {/* House */}
             <Image
               src="/images/single-house.png"
               alt="Harpenden townhouse"
               width={560}
               height={640}
-              className="w-full h-auto drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
+              className="w-full h-auto object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
               priority
             />
 
@@ -139,7 +166,7 @@ export default function Hero() {
               alt="Nat the vet nurse with two cats"
               width={180}
               height={220}
-              className="absolute bottom-[38px] left-1/2 -translate-x-1/2 h-auto w-[130px] md:bottom-[50px] md:w-[160px] lg:bottom-[56px] lg:w-[180px] z-10"
+              className="absolute bottom-[32px] left-1/2 -translate-x-1/2 h-auto w-[120px] object-contain sm:bottom-[40px] sm:w-[140px] md:bottom-[50px] md:w-[160px] lg:bottom-[56px] lg:w-[180px] z-10"
               priority
             />
           </div>
