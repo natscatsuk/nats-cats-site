@@ -1,129 +1,229 @@
-import { SectionShell } from "./SectionShell";
+"use client";
+
 import { FadeInWhenVisible } from "./FadeInWhenVisible";
+import { FadeInSection } from "./animations/FadeInSection";
+import { motion, useReducedMotion } from "framer-motion";
+
+const visitPlans = [
+  {
+    id: "standard",
+    title: "Standard Home Visits",
+    highlight: "Most popular",
+    summary: "A calm daily check-in for cats who like their routine just so.",
+    description:
+      "Ideal for feeding, litter refresh, a little playtime and welfare checks while you're away.",
+    bullets: [
+      "Perfect for relaxed, easygoing cats",
+      "Typically one visit per day",
+      "Flexible scheduling",
+    ],
+    footer: "From £XX per visit",
+    icon: (
+      <svg
+        className="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "weekend",
+    title: "Weekend & Bank Holiday Visits",
+    highlight: "Weekend & bank holidays",
+    summary: "Dedicated cover for busy weekends and bank-holiday trips.",
+    description:
+      "Keeps feeding, litter and medication on track while you enjoy your break.",
+    bullets: [
+      "Extra reassurance when you're away short-term",
+      "Ideal for 2–4 day breaks",
+      "Subject to availability",
+    ],
+    footer: "From £XX per visit",
+    icon: (
+      <svg
+        className="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "premium",
+    title: "Extended Visits",
+    highlight: "Premium care",
+    summary: "Longer, more detailed visits for cats who need extra time and attention.",
+    description:
+      "From playful kittens to seniors or those on medication and special diets.",
+    bullets: [
+      "Ideal for kittens, seniors or medical needs",
+      "Extra time for medication, cleaning & play",
+      "Limited slots for bespoke care",
+    ],
+    footer: "From £XX per visit",
+    icon: (
+      <svg
+        className="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
+      </svg>
+    ),
+  },
+];
 
 export default function ServicesPreview() {
+  const shouldReduceMotion = useReducedMotion();
+  const handleBookingClick = () => {
+    const bookingSection = document.getElementById("booking");
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <section className="feature-section">
-      <SectionShell
-        id="services"
-        eyebrow="Visit options"
-        title="Choose the visit that fits your cat"
-        subtitle="Every cat is different. Pick the visit length that matches their routine, energy level and medical needs."
-        animationDelay="0.27s"
-      >
-        <div className="feature-grid">
-          {/* Standard visit */}
-          <FadeInWhenVisible delay={0.02}>
-          <article className="feature-card">
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/90 px-3 py-1 mb-4 w-fit">
-              <span className="text-[0.75rem] font-medium tracking-wide text-amber-800 uppercase">
-                Most popular
-              </span>
-            </div>
-            <div className="flex items-start gap-4 mb-3">
-              <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4c8eff] to-[#4c8eff] text-white shadow-[0_8px_20px_rgba(76,142,255,0.35)]">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-[15px] font-semibold text-slate-900 mb-1 leading-tight">
-                  Standard Home Visits
-              </h3>
-                <p className="text-xs text-slate-500 italic mb-2">
-                  Perfect for relaxed, easygoing cats
-                </p>
-              </div>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-600 mb-4">
-              A calm daily check-in for cats who like their routine just so. Ideal for feeding, litter refresh, a little playtime and welfare checks while you&apos;re away.
-            </p>
-            <div className="mt-auto space-y-2">
-              <p className="text-xs text-slate-500">
-                Typically 1 visit per day • Flexible scheduling
+    <FadeInSection delay={0.1}>
+      <section id="services" className="relative feature-section">
+        <div className="mx-auto max-w-5xl px-6 lg:px-0 py-10 sm:py-12 lg:py-14">
+          <FadeInWhenVisible>
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold tracking-[0.22em] uppercase text-slate-500 mb-2">
+                Visit options
               </p>
-              <p className="text-xs text-slate-400 text-right">
-                From £XX per visit
+              <h2 className="text-3xl md:text-[2.2rem] font-semibold tracking-tight text-slate-900 mb-3">
+                Choose the visit that fits your cat
+              </h2>
+              <p className="text-sm md:text-[0.95rem] leading-relaxed text-slate-600 max-w-2xl mx-auto">
+                Every cat is different. These visit types are designed to match their routine,
+                energy levels and any medical needs – all with a vet nurse keeping watch.
               </p>
             </div>
-          </article>
           </FadeInWhenVisible>
 
-          {/* Weekend */}
-          <FadeInWhenVisible delay={0.04}>
-          <article className="feature-card">
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-50/90 px-3 py-1 mb-4 w-fit">
-              <span className="text-[0.75rem] font-medium tracking-wide text-sky-800 uppercase">
-                Weekend &amp; bank holidays
-              </span>
-            </div>
-            <div className="flex items-start gap-4 mb-3">
-              <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4c8eff] to-[#4c8eff] text-white shadow-[0_8px_20px_rgba(76,142,255,0.35)]">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-[15px] font-semibold text-slate-900 mb-1 leading-tight">
-                  Weekend &amp; Bank Holiday Visits
-                </h3>
-                <p className="text-xs text-slate-500 italic mb-2">
-                  Extra reassurance when you&apos;re away short-term
-                </p>
-              </div>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-600 mb-4">
-              Dedicated cover for busy weekends and bank holiday trips. Keeps feeding, litter and medication on track while you enjoy your break.
-            </p>
-            <div className="mt-auto space-y-2">
-              <p className="text-xs text-slate-500">
-                Ideal for 2–4 day breaks • Subject to availability
-              </p>
-              <p className="text-xs text-slate-400 text-right">
-                From £XX per visit
-              </p>
-            </div>
-          </article>
-          </FadeInWhenVisible>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+            {visitPlans.map((plan, index) => (
+              <FadeInSection key={plan.id} delay={index * 0.05}>
+                <motion.article
+                  className="
+                    visit-card
+                    group relative flex h-full flex-col overflow-hidden
+                    rounded-3xl border border-white/60 bg-[#FFF9F1]/95
+                    shadow-[0_20px_60px_rgba(15,23,42,0.04)]
+                    px-6 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8
+                    transition-colors duration-200
+                  "
+                  whileHover={shouldReduceMotion ? {} : {
+                    scale: 1.03,
+                    y: -6,
+                    boxShadow: "0 28px 80px rgba(0,0,0,0.12)",
+                  }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.99 }}
+                  transition={{ duration: 0.23, ease: "easeOut" }}
+                >
+                  {/* Top row: badge + icon */}
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <div className="visit-card-badge inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-slate-600">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.25)]" />
+                      <span>{plan.highlight}</span>
+                    </div>
 
-          {/* Extended / Featured */}
-          <FadeInWhenVisible delay={0.06}>
-          <article className="feature-card bg-gradient-to-br from-[#1a2332] via-[#1e2838] to-[#141b26] border-[#4c8eff]/40 text-slate-100">
-            <div className="inline-flex items-center gap-2 rounded-full bg-sky-500/20 px-3 py-1 mb-4 w-fit">
-              <span className="text-[0.75rem] font-medium tracking-wide text-sky-100 uppercase">
-                Premium care
-              </span>
-            </div>
-            <div className="flex items-start gap-4 mb-3">
-              <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#4c8eff] to-[#4c8eff] text-white shadow-[0_8px_20px_rgba(76,142,255,0.5)]">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-[15px] font-semibold mb-1 leading-tight">
-                  Extended Visits
-                </h3>
-                <p className="text-xs text-slate-300 italic mb-2">
-                  For kittens, seniors or medical needs
-                </p>
-              </div>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-200/90 mb-4">
-              Longer, more detailed visits for cats who need extra time and attention – from playful kittens to seniors or those on medication and special diets.
-            </p>
-            <div className="mt-auto space-y-2">
-              <p className="text-xs text-slate-300/80">
-                Extra time for medication, cleaning &amp; play • Limited slots
-              </p>
-              <p className="text-xs text-slate-400 text-right">
-                From £XX per visit
-              </p>
-            </div>
-          </article>
-          </FadeInWhenVisible>
+                    <div className="relative">
+                      <div className="absolute inset-0 -z-10 rounded-full bg-sky-400/25 blur-xl transition-opacity duration-300 group-hover:bg-sky-500/30" />
+                      <motion.div
+                        whileHover={shouldReduceMotion ? {} : { 
+                          scale: 1.1, 
+                          boxShadow: "0 0 0 6px rgba(37,99,235,0.18)" 
+                        }}
+                        className="visit-card-icon flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 text-white shadow-[0_14px_30px_rgba(15,23,42,0.35)]"
+                      >
+                        {plan.icon}
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  {/* Title + short summary (always visible) */}
+                  <div className="flex-1">
+                    <h3 className="text-[1.05rem] font-semibold text-slate-900 mb-1.5">
+                      {plan.title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {plan.summary}
+                    </p>
+                  </div>
+
+                  {/* EXPANDING DETAILS */}
+                  <motion.div
+                    className="
+                      mt-3 space-y-2 text-sm text-slate-600
+                      md:max-h-0 md:opacity-0 md:overflow-hidden
+                      transition-all duration-300 ease-out
+                      md:group-hover:max-h-96 md:group-hover:opacity-100
+                      md:focus-within:max-h-96 md:focus-within:opacity-100
+                    "
+                    initial={{ opacity: 0, y: 6 }}
+                    whileHover={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                  >
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                      {plan.description}
+                    </p>
+
+                    {plan.bullets && (
+                      <ul className="space-y-1.5">
+                        {plan.bullets.map((bullet) => (
+                          <li key={bullet} className="flex gap-2">
+                            <span className="mt-[6px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#246BFF]" />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+
+                  {/* Footer CTA row */}
+                  <div className="mt-4 flex items-center justify-between pt-3 border-t border-white/70">
+                    <p className="text-[0.78rem] text-slate-500">
+                      {plan.footer}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleBookingClick}
+                      className="visit-card-cta inline-flex items-center gap-1 text-[0.8rem] font-semibold text-sky-700 transition-colors hover:text-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 rounded"
+                    >
+                      <span>View booking form</span>
+                      <span className="visit-card-cta-arrow translate-y-px text-xs transition-transform duration-200">
+                        →
+                      </span>
+                    </button>
+                  </div>
+                </motion.article>
+              </FadeInSection>
+            ))}
+          </div>
         </div>
-      </SectionShell>
-    </section>
+      </section>
+    </FadeInSection>
   );
 }

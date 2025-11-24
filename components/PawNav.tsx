@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { NAV_ITEMS } from "@/lib/nav-config";
 import type { NavItem, NavItemId } from "@/types/nav";
@@ -25,6 +26,7 @@ export function PawNav() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
 
   const routeActiveId: NavItemId =
     NAV_ITEMS.find((item) =>
@@ -235,15 +237,38 @@ export function PawNav() {
                     >
                       {item.pillLabel}
                     </span>
-                    <Image
-                      src="/images/pawprint.png"
-                      alt=""
-                      width={20}
-                      height={20}
-                      sizes="20px"
-                      aria-hidden="true"
-                      className={clsx("paw-icon", isActive && "visible")}
-                    />
+                    <motion.div
+                      whileHover={shouldReduceMotion ? {} : { rotate: 10, y: -1, scale: 1.03 }}
+                      className={clsx("paw-icon transition-transform duration-200", isActive && "visible")}
+                      animate={
+                        isActive && !shouldReduceMotion
+                          ? {
+                              scale: [1, 1.05, 1],
+                            }
+                          : {}
+                      }
+                      transition={
+                        isActive && !shouldReduceMotion
+                          ? {
+                              scale: {
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              },
+                            }
+                          : { duration: 0.2, ease: "easeOut" }
+                      }
+                    >
+                      <Image
+                        src="/images/pawprint.png"
+                        alt=""
+                        width={20}
+                        height={20}
+                        sizes="20px"
+                        aria-hidden="true"
+                        className="transition-transform duration-200"
+                      />
+                    </motion.div>
                   </span>
                   <span id={`nav-card-title-${item.id}`} className="sr-only">
                     {item.title}

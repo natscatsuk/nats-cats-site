@@ -3,8 +3,15 @@ import { SectionShell } from "@/components/SectionShell";
 import { NatCard } from "@/components/NatCard";
 import { NatAccordion } from "@/components/NatAccordion";
 import { FadeInWhenVisible } from "@/components/FadeInWhenVisible";
+import { FadeInSection } from "@/components/animations/FadeInSection";
+import { AnimatedCard } from "@/components/animations/AnimatedCard";
+import { ScrollRevealCard } from "@/components/animations/ScrollRevealCard";
+import { AnimatedIcon } from "@/components/AnimatedIcon";
+import { AnimatedTestimonialCard } from "@/components/AnimatedTestimonialCard";
+import { AnimatedNatIllustration } from "@/components/AnimatedNatIllustration";
+import Testimonials from "@/components/Testimonials";
 import Features from "@/components/features";
-import ServicesPreview from "@/components/services-preview";
+import VisitOptions from "@/components/VisitOptions";
 import AboutStrip from "@/components/about-strip";
 import CtaFooter from "@/components/cta-footer";
 import Image from "next/image";
@@ -54,7 +61,7 @@ export default function Home() {
     {
       icon: "🐾",
       title: "Gentle handling for sensitive cats",
-      body: "Nervous, senior, post-op or medically fragile cats are handled using low-stress vet-level handling techniques to keep visits calm and safe.",
+      body: "Nervous, senior, post-op or medically fragile cats are handled using low-stress, vet-level handling techniques to keep visits calm and safe.",
     },
     {
       icon: "🏠",
@@ -64,7 +71,7 @@ export default function Home() {
     {
       icon: "📸",
       title: "Reassurance for worried humans",
-      body: "Detailed updates, photos and honest feedback mean you know exactly how your cat is doing – with the confidence of a vet nurse keeping watch.",
+      body: "Detailed updates, photos and honest feedback mean you always know how your cat is doing – with the confidence of a vet nurse keeping watch.",
     },
   ];
 
@@ -77,17 +84,17 @@ export default function Home() {
     {
       step: 1,
       title: "Tell Nat about your cat",
-      body: "Share a few details about your cat's routine, health and quirks. Nat will recommend the visit length and schedule that keeps everything feeling normal at home.",
+      body: "Share their routine, quirks, diet requirements and any medical needs so visits feel familiar and safe.",
     },
     {
       step: 2,
-      title: "Nat visits while you're away",
-      body: "Nat follows your cat's usual routine – feeding, medication, playtime and litter – with clinical-level attention to detail so you never have to worry.",
+      title: "Nat builds your visit plan",
+      body: "Together you agree visit length, frequency and any extras such as medication, updates or extended stays.",
     },
     {
       step: 3,
-      title: "Daily updates straight to your phone",
-      body: "After each visit you'll get a short update with photos or videos, so you can see how relaxed your cat is and enjoy your time away.",
+      title: "Daily updates & vet-level oversight",
+      body: "While you're away, you'll receive updates, photos and honest feedback so you always know how your cat is doing.",
     },
   ];
 
@@ -153,111 +160,103 @@ export default function Home() {
             </div>
 
       {/* Credentials Section - peeks under hero on desktop */}
-      <div className="mt-10 sm:mt-12 lg:mt-20">
-        <SectionShell
-          id="trust"
-          eyebrow="Clinical-level care at home"
-          title="Why cat owners trust Nat's Cats"
-          subtitle="Every visit is led by a qualified veterinary nurse – not a hobby sitter. Clinical-grade care delivered with warmth and expertise in the comfort of your cat's own home."
-          animationDelay="0.15s"
-        >
-        <FadeInWhenVisible>
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/95 px-4 py-2 text-[14px] font-medium text-amber-800 shadow-[0_8px_24px_rgba(251,191,36,0.35)] border border-amber-100/80 mb-6">
-                <span className="text-[14px] font-semibold">🐾</span>
-            <span className="text-[13px] sm:text-[14px] font-semibold">5.0</span>
-                <span className="text-[16px] leading-none">★★★★★</span>
-            <span className="text-[13px] sm:text-[14px]">from local cat owners</span>
-                </div>
-        </FadeInWhenVisible>
-        <div className="mx-auto max-w-6xl">
-          <section
-            id="trust-badges"
-            className="mt-10 sm:mt-12 lg:mt-14"
+      <FadeInSection>
+        <div className="mt-10 sm:mt-12 lg:mt-20">
+          <SectionShell
+            id="trust"
+            eyebrow="Clinical-level care at home"
+            title="Why cat owners trust Nat's Cats"
+            subtitle="Every visit is led by a qualified veterinary nurse – not a hobby sitter. Clinical-grade care delivered with warmth and expertise in the comfort of your cat's own home."
+            animationDelay="0.15s"
           >
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-              {BADGES.map((badge) => (
-                <article
-                  key={badge.title}
-                  className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] text-center shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-8"
-                >
-                  <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20">
-                    <Image
-                      src={badge.src}
-                      alt={badge.title}
-                      fill
-                      sizes="(max-width: 640px) 64px, 80px"
-                      className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
-                    />
-                </div>
-                  <p className="text-center text-sm sm:text-base leading-snug text-[#182235] font-medium">
-                    {badge.title}
-                  </p>
-                </article>
-              ))}
-                </div>
-          </section>
-                </div>
-      </SectionShell>
-                </div>
+          <FadeInWhenVisible>
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-50/95 px-4 py-2 text-[14px] font-medium text-amber-800 shadow-[0_8px_24px_rgba(251,191,36,0.35)] border border-amber-100/80 mb-6">
+              <span className="text-[14px] font-semibold">🐾</span>
+              <span className="text-[13px] sm:text-[14px] font-semibold">5.0</span>
+              <span className="text-[16px] leading-none">★★★★★</span>
+              <span className="text-[13px] sm:text-[14px]">from local cat owners</span>
+            </div>
+          </FadeInWhenVisible>
+          <div className="mx-auto max-w-6xl">
+            <section
+              id="trust-badges"
+              className="mt-10 sm:mt-12 lg:mt-14"
+            >
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                {BADGES.map((badge, index) => (
+                  <ScrollRevealCard key={badge.title} delay={index * 0.05}>
+                    <AnimatedCard className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] text-center shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-8 transition-colors duration-200 hover:bg-[#fff7ec]/100">
+                      <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20 transition-transform duration-200 hover:scale-[1.03]">
+                        <Image
+                          src={badge.src}
+                          alt={badge.title}
+                          fill
+                          sizes="(max-width: 640px) 64px, 80px"
+                          className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
+                        />
+                      </div>
+                      <p className="text-center text-sm sm:text-base leading-snug text-[#182235] font-medium">
+                        {badge.title}
+                      </p>
+                    </AnimatedCard>
+                  </ScrollRevealCard>
+                ))}
+              </div>
+            </section>
+          </div>
+        </SectionShell>
+        </div>
+      </FadeInSection>
 
       {/* Section Divider */}
       <div className="section-divider" />
 
       {/* Benefits Section */}
-      <section className="feature-section" id="about-nats-cats">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-            Benefits of vet-nurse cat care
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 lg:text-[2.35rem]">
-            Why cat owners choose Nat for clinical-level home care
-          </h2>
-          <p className="mt-4 max-w-3xl text-[0.97rem] leading-relaxed text-slate-600">
-            You&apos;re not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss.
-          </p>
+      <FadeInSection>
+        <section className="feature-section" id="about-nats-cats">
+          <FadeInWhenVisible>
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                Benefits of vet-nurse cat care
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 lg:text-[2.35rem]">
+                Why cat owners choose Nat for clinical-level home care
+              </h2>
+              <p className="mt-4 max-w-3xl text-[0.97rem] leading-relaxed text-slate-600">
+                You&apos;re not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss.
+              </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <div className="inline-flex items-center gap-3 rounded-full border border-sky-100 bg-white/80 px-5 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.06)] backdrop-blur-sm">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-[0_0_0_3px_rgba(255,255,255,0.7)]">
-                <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none">
-                  <path
-                    d="M10 4v12M4 10h12"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-              <span className="text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-slate-700">
-                Vet-nurse advantages at a glance
-              </span>
+              <div className="mt-8">
+                <p className="text-sm text-slate-600">
+                  <span className="font-semibold text-slate-700">Vet-nurse advantages at a glance</span> · 4 ways Nat&apos;s care goes beyond a hobby sitter.
+                </p>
+              </div>
+
+              <div className="feature-grid mt-10">
+                {vetNurseBenefits.map((item, index) => (
+                  <ScrollRevealCard key={item.id} delay={index * 0.05}>
+                    <AnimatedCard className="feature-card rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.04)] transition-colors duration-200 hover:bg-[#fff7ec]/100">
+                      <div className="feature-card-header">
+                        <div className="relative flex flex-shrink-0 items-center justify-center">
+                          <div className="absolute inset-0 scale-[1.45] rounded-full bg-[rgba(72,115,255,0.2)] blur-2xl -z-10" />
+                          <AnimatedIcon className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 text-lg text-white shadow-[0_14px_30px_rgba(15,23,42,0.35)] animate-benefit-float transition-transform duration-200 hover:scale-[1.03]">
+                            <span className="text-base drop-shadow-sm">{item.icon}</span>
+                          </AnimatedIcon>
+                          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900 px-2 py-[2px] text-[0.65rem] font-semibold text-white shadow-[0_6px_16px_rgba(15,23,42,0.4)]">
+                            {item.id}
+                          </span>
+                        </div>
+                      </div>
+                      <h3 className="feature-card-title">{item.title}</h3>
+                      <p className="feature-card-body">{item.body}</p>
+                    </AnimatedCard>
+                  </ScrollRevealCard>
+                ))}
+              </div>
             </div>
-            <p className="text-xs text-slate-500">
-              4 ways Nat&apos;s care goes beyond a hobby sitter.
-            </p>
-          </div>
-
-          <div className="feature-grid mt-10">
-            {vetNurseBenefits.map((item) => (
-              <article key={item.id} className="feature-card">
-                <div className="feature-card-header">
-                  <div className="relative flex flex-shrink-0 items-center justify-center">
-                    <div className="absolute inset-0 scale-[1.45] rounded-full bg-[rgba(72,115,255,0.2)] blur-2xl -z-10" />
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 text-lg text-white shadow-[0_14px_30px_rgba(15,23,42,0.35)] animate-benefit-float">
-                      <span className="text-base drop-shadow-sm">{item.icon}</span>
-                    </div>
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900 px-2 py-[2px] text-[0.65rem] font-semibold text-white shadow-[0_6px_16px_rgba(15,23,42,0.4)]">
-                      {item.id}
-                    </span>
-                  </div>
-                </div>
-                <h3 className="feature-card-title">{item.title}</h3>
-                <p className="feature-card-body">{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+          </FadeInWhenVisible>
+        </section>
+      </FadeInSection>
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -269,163 +268,130 @@ export default function Home() {
       <div className="section-divider" />
 
       {/* How It Works Section */}
-      <section className="feature-section">
-        <SectionShell
-          eyebrow="Simple, clinical-grade visit flow"
-          title="How Nat's cat sitting works"
-          animationDelay="0.25s"
-        >
-          <div className="feature-grid">
-            {steps.map((step, index) => (
-              <article key={index} className="feature-card">
-                <div className="feature-card-header">
-                  <StepIcon step={step.step} />
-                </div>
-                <h3 className="feature-card-title">{step.title}</h3>
-                <p className="feature-card-body">{step.body}</p>
-              </article>
-            ))}
-          </div>
-          <FadeInWhenVisible delay={0.1}>
-            <p className="mt-6 text-center text-sm text-slate-500">
-              Home visits from <strong>£XX per visit</strong> · Daily photo updates included · Medication support available on request
-            </p>
-          </FadeInWhenVisible>
-        </SectionShell>
-      </section>
+      <FadeInSection delay={0.1}>
+        <section className="feature-section">
+          <SectionShell
+            eyebrow="Simple, clinical-grade visit flow"
+            title="How Nat's cat sitting works"
+            animationDelay="0.25s"
+          >
+            <div className="feature-grid">
+              {steps.map((step, index) => (
+                <ScrollRevealCard key={index} delay={index * 0.05}>
+                  <AnimatedCard className="feature-card rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.04)] transition-colors duration-200 hover:bg-[#fff7ec]/100">
+                    <div className="feature-card-header">
+                      <div className="transition-transform duration-200 hover:scale-[1.03]">
+                        <StepIcon step={step.step} />
+                      </div>
+                    </div>
+                    <h3 className="feature-card-title">{step.title}</h3>
+                    <p className="feature-card-body">{step.body}</p>
+                  </AnimatedCard>
+                </ScrollRevealCard>
+              ))}
+            </div>
+            <FadeInWhenVisible delay={0.1}>
+              <p className="mt-6 text-center text-sm text-slate-500">
+                Home visits from <strong>£XX per visit</strong> · Daily photo updates included · Medication support available on request
+              </p>
+            </FadeInWhenVisible>
+          </SectionShell>
+        </section>
+      </FadeInSection>
 
       {/* Section Divider */}
       <div className="section-divider" />
 
-      {/* Services Preview */}
-      <ServicesPreview />
+      {/* Visit Options */}
+      <VisitOptions />
 
       {/* Section Divider */}
       <div className="section-divider" />
 
       {/* Testimonials Section */}
-      <SectionShell
-        eyebrow="Real feedback from local cat owners"
-        title="What local cat owners say"
-        subtitle="Real feedback from Harpenden families who trust Nat's calm, clinical-grade home cat care."
-        animationDelay="0.3s"
-      >
-        <div className="grid gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] items-start">
-          {/* Hero testimonial card */}
-          <FadeInWhenVisible delay={0}>
-            <div className="relative rounded-2xl border-2 border-[#f5d9a5]/40 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.10)] text-white transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-              {/* Stars */}
-              <div className="mb-4 flex items-center gap-1 text-lg text-[#f5d9a5]">
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
+      <FadeInSection delay={0.1}>
+        <SectionShell
+          eyebrow="Real feedback from local cat owners"
+          title="What local cat owners say"
+          animationDelay="0.3s"
+        >
+          <div className="py-6 md:py-10">
+            <Testimonials />
           </div>
-
-              {/* Highlight line */}
-              <p className="text-sm font-semibold text-[#f5d9a5] mb-3">
-                The best decision we made for our anxious cat.
-              </p>
-              
-              {/* Main quote */}
-              <p className="text-base leading-relaxed text-slate-100 mb-4">
-                Without a doubt the best cat sitter we&apos;ve ever used. The updates, photos, and clinical care were outstanding.
-              </p>
-              
-              {/* Customer info */}
-              <div className="pt-3 border-t border-slate-700/50">
-                <p className="text-sm font-semibold text-white mb-1">Ben & Tara</p>
-                <p className="text-xs text-slate-300">Harpenden cat owner</p>
-                      </div>
-                    </div>
-          </FadeInWhenVisible>
-          
-          {/* Secondary testimonials */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FadeInWhenVisible delay={0.05}>
-              <div className="relative rounded-2xl border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-                <p className="text-sm leading-relaxed text-slate-700 mb-3">
-                  Nat was calm, gentle and incredibly professional. Our shy rescue cat actually came out for her — unheard of!
-                </p>
-                <p className="text-xs font-medium text-slate-900">– Sarah, Harpenden</p>
-                      </div>
-            </FadeInWhenVisible>
-            
-            <FadeInWhenVisible delay={0.1}>
-              <div className="relative rounded-2xl border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-                <p className="text-sm leading-relaxed text-slate-700 mb-3">
-                  We came home to such relaxed, happy cats. Nat&apos;s medical knowledge gave us real peace of mind.
-                </p>
-                <p className="text-xs font-medium text-slate-900">– Aimee & Luke, Harpenden</p>
-            </div>
-            </FadeInWhenVisible>
-            
-            <FadeInWhenVisible delay={0.15}>
-              <div className="relative rounded-2xl border border-white/60 bg-gradient-to-br from-white via-[var(--nc-bg-cream-soft)] to-white p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-                <p className="text-sm leading-relaxed text-slate-700 mb-3">
-                  Our senior cat needs daily medication — Nat handled everything perfectly. So reassuring.
-                </p>
-                <p className="text-xs font-medium text-slate-900">– Harriet, Harpenden</p>
-            </div>
-            </FadeInWhenVisible>
-                </div>
-              </div>
-      </SectionShell>
+        </SectionShell>
+      </FadeInSection>
 
       {/* Section Divider */}
       <div className="section-divider" />
 
       {/* FAQ Section */}
-      <SectionShell
-        id="faqs"
-        eyebrow="FAQs"
-        title="Common questions from cat owners"
-        subtitle="If you're not sure yet, you're not alone. Here are the questions cat owners ask most often."
-        animationDelay="0.35s"
-      >
-        <NatAccordion items={faqItems} />
-      </SectionShell>
+      <FadeInSection delay={0.1}>
+        <SectionShell
+          id="faqs"
+          eyebrow="FAQs"
+          title="Common questions from cat owners"
+          subtitle="If you're not used to vet-nurse care, you're not alone. Here are the questions cat owners ask most often."
+          animationDelay="0.35s"
+        >
+          <div className="rounded-3xl bg-[var(--nc-bg-cream-soft)]/60 border border-white/70 p-6 lg:p-8 shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+            <NatAccordion items={faqItems} />
+          </div>
+        </SectionShell>
+      </FadeInSection>
 
       {/* Section Divider */}
       <div className="section-divider" />
 
       {/* About Nat Section */}
-      <SectionShell
-        id="about-nat"
-        eyebrow="About Nat"
-        title="Meet Nat – Your Vet-Nurse Cat Carer"
-        subtitle="Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments."
-        align="center"
-        animationDelay="0.4s"
-      >
-        <FadeInWhenVisible>
-          <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2">
-            <div className="rounded-3xl border border-white/70 bg-[var(--nc-bg-card)] p-6 shadow-[0_24px_60px_rgba(15,23,42,0.10)] text-left transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-              <div className="space-y-5 text-base sm:text-[16px] text-slate-600 leading-relaxed">
-                <p>
-                  Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat&apos;s Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
-                </p>
-                <p className="italic text-slate-500 text-[15px] leading-relaxed">
-                  Your cat is never just another booking.
-            </p>
-          </div>
+      <FadeInSection delay={0.1}>
+        <SectionShell
+          id="about-nat"
+          eyebrow="About Nat"
+          title="Meet Nat – Your Vet-Nurse Cat Carer"
+          subtitle="Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments."
+          align="center"
+          animationDelay="0.4s"
+        >
+          <FadeInWhenVisible>
+            <div className="mx-auto grid max-w-5xl items-center gap-8 lg:gap-12 sm:grid-cols-2">
+              {/* Left: Copy card */}
+              <div className="order-2 sm:order-1">
+                <div className="rounded-3xl border border-[#f1e2cf] bg-[#fff7ec] p-6 lg:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.04)] text-left">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-slate-900 mb-4">
+                    Your Vet-Nurse Cat Carer
+                  </h3>
+                  <div className="space-y-4 text-base sm:text-[16px] text-slate-600 leading-relaxed">
+                    <p>
+                      Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat&apos;s Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
+                    </p>
+                    
+                    {/* Bullet points */}
+                    <ul className="space-y-3 mt-6">
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">RCVS-registered veterinary nurse</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">Fully insured & DBS checked</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">Experienced with senior and special-needs cats</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-md rounded-2xl lg:rounded-[24px] shadow-[0_24px_60px_rgba(15,23,42,0.10)] ring-1 ring-slate-100/60 overflow-hidden bg-white/98 border border-white/70 flex items-center justify-center aspect-square max-h-[500px] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(15,23,42,0.18)]">
-                <Image
-                  src="/Cartoon Vet.png"
-                  alt="Cartoon illustration of Nat, your vet-nurse cat carer"
-                  width={500}
-                  height={500}
-                  className="object-contain w-full h-full p-6"
-                  priority
-                />
-          </div>
-          </div>
-        </div>
-        </FadeInWhenVisible>
-      </SectionShell>
+              
+              {/* Right: Illustration card */}
+              <div className="order-1 sm:order-2 flex justify-center">
+                <AnimatedNatIllustration />
+              </div>
+            </div>
+          </FadeInWhenVisible>
+        </SectionShell>
+      </FadeInSection>
 
       {/* Final CTA - outside container for full width */}
       <CtaFooter />

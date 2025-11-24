@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { FadeInUp } from "@/components/ui/motion";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
   const [catAnimation, setCatAnimation] = useState<any>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     fetch("/animations/cat-animate.json")
@@ -27,9 +29,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
+    <motion.section
       id="home-hero"
       className="hero pt-12 pb-8 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: "easeOut" }}
     >
       {/* Paw particle effects - background only */}
       <div className="hero-paw-particles" aria-hidden="true">
@@ -146,32 +151,52 @@ export default function Hero() {
         </div>
 
         <div
-          className="relative w-full flex items-center justify-center lg:justify-end fade-up-soft overflow-visible mt-6 lg:mt-0"
-          style={{ animationDelay: "0.12s" }}
+          className="relative w-full flex items-center justify-center lg:justify-end overflow-visible mt-6 lg:mt-0"
         >
           <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-none lg:w-[520px] xl:w-[560px] overflow-visible lg:-translate-y-[10%] lg:-translate-x-[5%]">
             {/* House */}
-            <Image
-              src="/images/single-house.png"
-              alt="Harpenden townhouse"
-              width={560}
-              height={640}
-              className="w-full h-auto object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
-              priority
-            />
+            <motion.div
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: shouldReduceMotion ? 0 : 0.4, 
+                duration: shouldReduceMotion ? 0 : 0.6, 
+                ease: "easeOut" 
+              }}
+            >
+              <Image
+                src="/images/single-house.png"
+                alt="Harpenden townhouse"
+                width={560}
+                height={640}
+                className="w-full h-auto object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
+                priority
+              />
+            </motion.div>
 
             {/* Nat on the doorstep */}
-            <Image
-              src="/images/nat's-hero2.png"
-              alt="Nat the vet nurse with two cats"
-              width={180}
-              height={220}
-              className="absolute bottom-[32px] left-1/2 -translate-x-1/2 h-auto w-[120px] object-contain sm:bottom-[40px] sm:w-[140px] md:bottom-[50px] md:w-[160px] lg:bottom-[56px] lg:w-[180px] z-10"
-              priority
-            />
+            <motion.div
+              initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98, y: shouldReduceMotion ? 0 : 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                delay: shouldReduceMotion ? 0 : 0.55, 
+                duration: shouldReduceMotion ? 0 : 0.55, 
+                ease: "easeOut" 
+              }}
+              className="absolute bottom-[32px] left-1/2 -translate-x-1/2 h-auto w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] z-10"
+            >
+              <Image
+                src="/images/nat's-hero2.png"
+                alt="Nat the vet nurse with two cats"
+                width={180}
+                height={220}
+                className="w-full h-auto object-contain"
+                priority
+              />
+            </motion.div>
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
