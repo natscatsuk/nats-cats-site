@@ -6,7 +6,6 @@ import { FadeInWhenVisible } from "@/components/FadeInWhenVisible";
 import { FadeInSection } from "@/components/animations/FadeInSection";
 import { AnimatedCard } from "@/components/animations/AnimatedCard";
 import { ScrollRevealCard } from "@/components/animations/ScrollRevealCard";
-import { AnimatedIcon } from "@/components/AnimatedIcon";
 import { AnimatedTestimonialCard } from "@/components/AnimatedTestimonialCard";
 import { AnimatedNatIllustration } from "@/components/AnimatedNatIllustration";
 import Testimonials from "@/components/Testimonials";
@@ -54,24 +53,28 @@ export default function Home() {
 
   const benefits = [
     {
-      icon: "🩺",
       title: "Clinical knowledge on every visit",
       body: "Nat monitors appetite, litter tray habits, breathing, mobility and demeanour – spotting subtle red flags long before they become emergencies.",
+      imageSrc: "/images/clinical.png",
+      imageAlt: "Nat using a stethoscope to check a cat – clinical knowledge on every visit",
     },
     {
-      icon: "🐾",
       title: "Gentle handling for sensitive cats",
       body: "Nervous, senior, post-op or medically fragile cats are handled using low-stress, vet-level handling techniques to keep visits calm and safe.",
+      imageSrc: "/images/nervous.png",
+      imageAlt: "Nat calmly comforting a nervous cat – gentle handling for sensitive cats",
     },
     {
-      icon: "🏠",
       title: "Confident with medication & injections",
       body: "From tablets and eye drops to insulin injections, medication is handled calmly, correctly and safely – without stressful wrestling or guesswork.",
+      imageSrc: "/images/medication2.png",
+      imageAlt: "Nat giving medication to a relaxed cat – confident with medication and injections",
     },
     {
-      icon: "📸",
       title: "Reassurance for worried humans",
       body: "Detailed updates, photos and honest feedback mean you always know how your cat is doing – with the confidence of a vet nurse keeping watch.",
+      imageSrc: "/images/updates.png",
+      imageAlt: "Nat sending a photo update of a happy cat – reassurance for worried humans",
     },
   ];
 
@@ -232,27 +235,39 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="feature-grid mt-10">
-                {vetNurseBenefits.map((item, index) => (
-                  <ScrollRevealCard key={item.id} delay={index * 0.05}>
-                    <AnimatedCard className="feature-card rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.04)] transition-colors duration-200 hover:bg-[#fff7ec]/100">
-                      <div className="feature-card-header">
-                        <div className="relative flex flex-shrink-0 items-center justify-center">
-                          <div className="absolute inset-0 scale-[1.45] rounded-full bg-[rgba(72,115,255,0.2)] blur-2xl -z-10" />
-                          <AnimatedIcon className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-sky-500 to-sky-600 text-lg text-white shadow-[0_14px_30px_rgba(15,23,42,0.35)] animate-benefit-float transition-transform duration-200 hover:scale-[1.03]">
-                            <span className="text-base drop-shadow-sm">{item.icon}</span>
-                          </AnimatedIcon>
-                          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-slate-900 px-2 py-[2px] text-[0.65rem] font-semibold text-white shadow-[0_6px_16px_rgba(15,23,42,0.4)]">
-                            {item.id}
-                          </span>
+            <div className="mt-8 md:mt-10">
+              <div className="max-w-6xl mx-auto px-4 md:px-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+                  {vetNurseBenefits.map((item, index) => (
+                    <ScrollRevealCard key={item.id} delay={index * 0.05}>
+                      <article
+                        aria-label={item.title}
+                        className="relative flex h-full flex-col rounded-3xl border border-white/60 bg-gradient-to-b from-white/85 to-[#fff6ea] p-6 md:p-7 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-transform transition-shadow duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
+                      >
+                        <div className="relative mx-auto md:mx-0 -mt-12 mb-4 h-28 w-28">
+                          <Image
+                            src={item.imageSrc}
+                            alt={item.imageAlt}
+                            fill
+                            className="object-contain"
+                            priority={index === 0}
+                          />
                         </div>
-                      </div>
-                      <h3 className="feature-card-title">{item.title}</h3>
-                      <p className="feature-card-body">{item.body}</p>
-                    </AnimatedCard>
-                  </ScrollRevealCard>
-                ))}
+
+                        <h3 className="mt-3 text-lg md:text-xl font-semibold tracking-tight text-[#0f172a]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-3 text-[14px] leading-relaxed text-[#3c4451]">
+                          {item.body}
+                        </p>
+
+                        <div className="mt-auto pt-4" />
+                      </article>
+                    </ScrollRevealCard>
+                  ))}
+                </div>
               </div>
+            </div>
             </div>
           </FadeInWhenVisible>
         </section>
