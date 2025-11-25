@@ -187,7 +187,7 @@ export function PawNav() {
     <>
       <nav
         className="nats-nav-rail hidden lg:flex"
-        aria-label="Main navigation"
+        aria-label="Page section navigation"
       >
         <ul className="nats-nav-list">
           {NAV_ITEMS.map((item) => {

@@ -334,38 +334,46 @@ body {
 
 /* Hero CTA Button Styles */
 .hero-cta-primary {
-  background: #0052cc !important;
-  color: white !important;
+  background: linear-gradient(135deg, #0b63ff, #084dcc) !important;
+  color: #ffffff !important;
   border-radius: 9999px !important;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.30) !important;
+  box-shadow: 0 18px 40px rgba(11, 99, 255, 0.35) !important;
   border: none !important;
-  transition: all 200ms ease-out !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease !important;
 }
 
 .hero-cta-primary:hover {
-  background: #0042a8 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.35) !important;
+  background: linear-gradient(135deg, #0a57e6, #0641b3) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18) !important;
 }
 
 .hero-cta-primary:active {
-  transform: translateY(0) !important;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12) !important;
 }
 
 .hero-cta-secondary {
-  border: 2px solid #0A60FF !important;
-  color: #0A60FF !important;
-  border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.5) !important;
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08) !important;
-  transition: all 200ms ease-out !important;
+  border: 1px solid rgba(148, 163, 184, 0.6) !important;
+  color: #0f172a !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08) !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease !important;
 }
 
 .hero-cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.7) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 26px 70px rgba(15, 23, 42, 0.18) !important;
+  background: #ffffff !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14) !important;
+  border-color: rgba(148, 163, 184, 0.9) !important;
 }
 
 @media (max-width: 768px) {
@@ -422,6 +430,45 @@ body {
   box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
   padding: 32px;
   z-index: 10;
+}
+
+/* Idle float animation for Nat-and-cats illustration */
+@keyframes heroNatFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.hero-nat-float {
+  animation: heroNatFloat 4s ease-in-out infinite alternate;
+}
+
+/* Disable float animation on mobile for performance */
+@media (max-width: 767px) {
+  .hero-nat-float {
+    animation: none;
+  }
+}
+
+/* Generic icon float pulse for card illustrations */
+@keyframes floatPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.icon-float {
+  animation: floatPulse 3.8s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.3s);
 }
 
 @media (min-width: 640px) {
@@ -1350,15 +1397,15 @@ h1.hero-title {
   box-shadow:
     0 18px 45px rgba(15, 23, 42, 0.06),
     0 2px 8px rgba(15, 23, 42, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transform: translateY(0);
   cursor: pointer;
 }
 
 .feature-card:hover {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-6px);
   box-shadow:
-    0 24px 70px rgba(15, 23, 42, 0.16),
-    0 8px 20px rgba(15, 23, 42, 0.08);
+    0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
 .feature-card-header {
@@ -1402,15 +1449,15 @@ h1.hero-title {
 /* === Premium Visit Options Card Hover Effects === */
 
 .visit-card {
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transform: translateY(0);
   cursor: pointer;
 }
 
 .visit-card:hover {
-  transform: translateY(-4px) scale(1.04);
+  transform: translateY(-6px);
   box-shadow:
-    0 20px 45px rgba(0, 0, 0, 0.12),
-    0 10px 20px rgba(0, 0, 0, 0.08);
+    0 16px 40px rgba(0, 0, 0, 0.08);
   background: linear-gradient(180deg, #ffffff 0%, #f8f4ee 100%);
 }
 
@@ -1457,17 +1504,25 @@ h1.hero-title {
 /* Mobile: Disable scaling to prevent overflow */
 @media (max-width: 768px) {
   .visit-card:hover {
-    transform: translateY(-2px);
-    scale: 1;
+    transform: translateY(-3px);
   }
 
   .visit-card:hover .visit-card-icon {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-2px);
   }
 
   .feature-card:hover {
-    transform: translateY(-2px);
-    scale: 1;
+    transform: translateY(-3px);
   }
+}
+
+/* Mobile navigation scrollbar hide */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 

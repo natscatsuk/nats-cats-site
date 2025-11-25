@@ -17,7 +17,7 @@ const visitPlans = [
       "Typically one visit per day",
       "Flexible scheduling",
     ],
-    footer: "From £XX per visit",
+    footer: "£15 per visit",
     icon: (
       <svg
         className="h-5 w-5"
@@ -46,7 +46,7 @@ const visitPlans = [
       "Ideal for 2–4 day breaks",
       "Subject to availability",
     ],
-    footer: "From £XX per visit",
+    footer: "£19 weekend rate",
     icon: (
       <svg
         className="h-5 w-5"
@@ -75,7 +75,7 @@ const visitPlans = [
       "Extra time for medication, cleaning & play",
       "Limited slots for bespoke care",
     ],
-    footer: "From £XX per visit",
+    footer: "£15 per extended visit",
     icon: (
       <svg
         className="h-5 w-5"

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/hero";
 import { SectionShell } from "@/components/SectionShell";
 import { NatCard } from "@/components/NatCard";
@@ -16,6 +17,12 @@ import CtaFooter from "@/components/cta-footer";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Nat's Cats – Home Cat Care in Harpenden",
+  description:
+    "Premium home cat sitting in Harpenden, led by a qualified veterinary nurse. Calm, clinical-grade visits with medication support, photo updates, and one-to-one care tailored to your cat.",
+};
 
 const StepIcon = ({ step }: { step: number }) => (
   <div className="flex items-center gap-3 mb-6">
@@ -144,9 +151,20 @@ export default function Home() {
 
   return (
     <>
+      {/* 
+        POLISH PASS NOTES:
+        - Single h1 in Hero component
+        - All main sections use h2 headings
+        - Consistent container pattern: max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+        - Standardized vertical spacing: py-12 sm:py-16 lg:py-20
+        - Mobile-first responsive design (375px+ supported)
+        - All images have meaningful alt text or alt="" for decorative
+        - Navigation has aria-label for accessibility
+        - Card styling standardized: rounded-3xl, consistent shadows
+      */}
       <Hero />
       
-      {/* Subtle decorative paw prints under hero */}
+      {/* Subtle decorative paw prints under hero - decorative only */}
       <div className="hidden lg:block relative max-w-5xl mx-auto px-6 -mt-8 mb-4" aria-hidden="true">
         <div className="flex items-center gap-8 opacity-[0.06]">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -170,9 +188,95 @@ export default function Home() {
               </div>
             </div>
 
+      {/* Social Proof Bar */}
+      <section className="w-full py-6 sm:py-8 -mt-4 sm:-mt-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-full bg-white/80 backdrop-blur-sm border border-[#f1e2cf]/60 shadow-[0_8px_24px_rgba(0,0,0,0.04)] px-6 py-4 sm:px-8 sm:py-5">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+              {/* Left: Star rating */}
+              <div className="flex items-center gap-2">
+                <span className="text-lg sm:text-xl" style={{ color: '#FFD86B', textShadow: '0 0 12px rgba(255, 216, 107, 0.4)' }}>
+                  ⭐️⭐️⭐️⭐️⭐️
+                </span>
+                <span className="text-sm sm:text-base font-semibold text-slate-700">5.0 from local cat owners</span>
+              </div>
+              
+              {/* Right: Trust badges */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-3 text-xs sm:text-sm text-slate-600">
+                <span className="font-medium">Vet-nurse led</span>
+                <span className="text-slate-400">·</span>
+                <span className="font-medium">Fully insured & DBS checked</span>
+                <span className="text-slate-400">·</span>
+                <span className="font-medium">Medication support available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services at a Glance Strip */}
+      <section className="w-full py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* Section Label */}
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 mb-4">
+            SERVICES AT A GLANCE
+          </p>
+          
+          {/* Services Band */}
+          <div className="w-full rounded-2xl bg-[#f5e9db] border border-[#f1e2cf]/60 shadow-[0_8px_24px_rgba(0,0,0,0.04)] p-5 md:p-6 lg:p-7">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+              {/* Standard Home Visit */}
+              <div className="flex items-start gap-3 p-3 sm:p-4 rounded-xl bg-white/60 border border-white/80 backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-sm">
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-lg shadow-md">
+                  🕒
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                    Standard Home Visit
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    20–30 min check-in, feeding, litter & welfare check.
+                  </p>
+                </div>
+              </div>
+
+              {/* Weekend & Bank Holiday Visits */}
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-white/60 border border-white/80 backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-sm">
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-lg shadow-md">
+                  📅
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                    Weekend & Bank-Holiday Visits
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Same calm care with premium weekend cover.
+                  </p>
+                </div>
+              </div>
+
+              {/* Medication Add-Ons */}
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-white/60 border border-white/80 backdrop-blur-sm transition-all duration-200 hover:bg-white/80 hover:shadow-sm">
+                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-lg shadow-md">
+                  💊
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                    Medication Add-Ons
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Oral, topical or injection support when needed.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Credentials Section - peeks under hero on desktop */}
       <FadeInSection>
-        <div className="mt-10 sm:mt-12 lg:mt-20">
+        <section className="py-12 sm:py-16 lg:py-20">
           <SectionShell
             id="trust"
             eyebrow="Clinical-level care at home"
@@ -196,11 +300,12 @@ export default function Home() {
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                 {BADGES.map((badge, index) => (
                   <ScrollRevealCard key={badge.title} delay={index * 0.05}>
+                    {/* Standardized card styling: rounded-3xl, consistent shadow, padding */}
                     <AnimatedCard className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] text-center shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-8 transition-colors duration-200 hover:bg-[#fff7ec]/100">
                       <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20 transition-transform duration-200 hover:scale-[1.03]">
                         <Image
                           src={badge.src}
-                          alt={badge.title}
+                          alt={`${badge.title} certification badge`}
                           fill
                           sizes="(max-width: 640px) 64px, 80px"
                           className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
@@ -216,7 +321,7 @@ export default function Home() {
             </section>
           </div>
         </SectionShell>
-        </div>
+        </section>
       </FadeInSection>
 
       {/* Section Divider */}
@@ -224,16 +329,17 @@ export default function Home() {
 
       {/* Benefits Section */}
       <FadeInSection>
-        <section className="feature-section" id="about-nats-cats">
+        <section className="py-16 md:py-20 lg:py-24" id="about-nats-cats">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <FadeInWhenVisible>
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+            <div>
+              <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Benefits of vet-nurse cat care
               </p>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 lg:text-[2.35rem]">
+              <h2 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight text-slate-900 lg:text-[2.35rem] max-w-2xl">
                 Why cat owners choose Nat for clinical-level home care
               </h2>
-              <p className="mt-4 max-w-3xl text-[0.97rem] leading-relaxed text-slate-600">
+              <p className="mt-4 max-w-2xl text-sm md:text-base leading-relaxed text-slate-700/90">
                 You&apos;re not booking a casual cat sitter. Every visit is led by an experienced veterinary nurse who understands feline health, behaviour and subtle changes that standard sitters can miss.
               </p>
 
@@ -245,14 +351,17 @@ export default function Home() {
 
             <div className="mt-8 md:mt-10">
               <div className="max-w-6xl mx-auto px-4 md:px-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8 items-stretch">
                   {vetNurseBenefits.map((item, index) => (
                     <ScrollRevealCard key={item.id} delay={index * 0.05}>
                       <article
                         aria-label={item.title}
-                        className="relative flex h-full flex-col rounded-3xl border border-white/60 bg-gradient-to-b from-white/85 to-[#fff6ea] p-6 md:p-7 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-transform transition-shadow duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
+                        className="relative flex h-full flex-col rounded-3xl border border-white/60 bg-gradient-to-b from-white/85 to-[#fff6ea] p-9 md:p-9 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-transform transition-shadow duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
                       >
-                        <div className="relative mx-auto md:mx-0 -mt-12 mb-4 h-28 w-28">
+                        <div
+                          className="relative mx-auto md:mx-0 -mt-10 mb-3 h-28 w-28 icon-float"
+                          style={{ ['--i' as any]: index + 1 }}
+                        >
                           <Image
                             src={item.imageSrc}
                             alt={item.imageAlt}
@@ -278,6 +387,7 @@ export default function Home() {
             </div>
             </div>
           </FadeInWhenVisible>
+          </div>
         </section>
       </FadeInSection>
 
@@ -304,11 +414,12 @@ export default function Home() {
               {/* Connecting line behind cards on desktop */}
               <div className="hidden lg:block absolute top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-200/40 to-transparent z-0" />
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 sm:px-0 relative z-10">
+              {/* Standardized container and responsive grid for mobile (375px+) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {steps.map((step, index) => (
                   <ScrollRevealCard key={index} delay={index * 0.05}>
                     <article
-                      className="group rounded-3xl bg-gradient-to-b from-white/80 to-[#fff6ea] border border-white/60 p-6 md:p-7 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-xl flex flex-col h-full"
+                      className="group rounded-3xl bg-gradient-to-b from-white/80 to-[#fff6ea] border border-white/60 p-5 sm:p-6 md:p-7 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-xl flex flex-col h-full"
                       aria-label={step.title}
                     >
                       <StepIcon step={step.step} />
@@ -325,7 +436,7 @@ export default function Home() {
             </div>
             <FadeInWhenVisible delay={0.1}>
               <p className="mt-8 text-center text-xs md:text-sm text-slate-500">
-                Home visits from <strong>£15 per visit</strong> · Daily photo updates included · Medication support available on request
+                Home visits from <span className="font-semibold">£15</span> per visit · Second same-day visit <span className="font-semibold">£12</span> · Weekend visits <span className="font-semibold">£19</span> · Medication add-ons <span className="font-semibold">£4–£8</span>
               </p>
             </FadeInWhenVisible>
           </SectionShell>
@@ -337,6 +448,59 @@ export default function Home() {
 
       {/* Visit Options */}
       <VisitOptions />
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
+      {/* Local Area Strip */}
+      <section className="w-full py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* Responsive grid: single column on mobile, two columns on desktop */}
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-6 sm:gap-8 lg:gap-12 items-center">
+            {/* Left: Content */}
+            <div>
+              {/* Heading Label */}
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 mb-3">
+                LOCAL, NURSE-LED HOME CARE
+              </p>
+              
+              {/* Title - using h2 for main section heading */}
+              <h2 className="text-2xl md:text-3xl font-semibold leading-tight text-slate-900 mb-6">
+                Serving Harpenden and surrounding areas within 3 miles
+              </h2>
+              
+              {/* Paragraph with highlights */}
+              <div className="space-y-2.5 text-base text-slate-600 leading-relaxed">
+                <p>
+                  <span className="font-semibold text-slate-700">Based in Harpenden.</span> Ideal for local owners who prefer a nurse-led, in-home option.
+                </p>
+                <p>
+                  No overnight stays; focused on calm home visits that keep your cat comfortable in their own space.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Mini-map card */}
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_18px_45px_rgba(0,0,0,0.06)] border border-[#f1e2cf] bg-gradient-to-br from-slate-100 to-slate-200/80">
+              <div className="relative w-full aspect-[4/3] min-h-[200px]">
+                <Image
+                  src="/images/harpenden-map-placeholder.png"
+                  alt="Map showing Harpenden and surrounding areas within 3 miles served by Nat's Cats"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                />
+                {/* Overlay badge */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-sm px-4 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.12)] border border-white/80">
+                    <span className="text-xs font-semibold text-slate-900">Within ~3 miles</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -353,6 +517,102 @@ export default function Home() {
           </div>
         </SectionShell>
       </FadeInSection>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
+      {/* Key Policies at a Glance Strip */}
+      <section className="w-full py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* Section Label */}
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">
+            SERVICE POLICIES
+          </p>
+          
+          {/* Main section heading - using h2 */}
+          <h2 className="text-2xl md:text-3xl font-semibold leading-tight text-slate-900 mb-6 md:mb-8">
+            Important policies in plain English
+          </h2>
+          
+          {/* Policies Grid - responsive grid for mobile (375px+) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+            {/* No overnight stays */}
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-2 sm:gap-3 p-3 md:p-4 rounded-2xl bg-white/50 border border-white/70 backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+              <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-base shadow-sm">
+                ⚠️
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                  No overnight stays
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  All care provided via home visits only.
+                </p>
+              </div>
+            </div>
+
+            {/* Clear cancellations */}
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 p-3 md:p-4 rounded-2xl bg-white/50 border border-white/70 backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+              <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-base shadow-sm">
+                ⏰
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                  Clear cancellations
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Please give reasonable notice where possible.
+                </p>
+              </div>
+            </div>
+
+            {/* Emergency vet cover */}
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 p-3 md:p-4 rounded-2xl bg-white/50 border border-white/70 backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+              <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-base shadow-sm">
+                🏥
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                  Emergency vet cover
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Nat will follow your vet details & emergency plan.
+                </p>
+              </div>
+            </div>
+
+            {/* Medication consent */}
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 p-3 md:p-4 rounded-2xl bg-white/50 border border-white/70 backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+              <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-base shadow-sm">
+                ✍️
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                  Medication consent
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  We&apos;ll confirm doses and written permission first.
+                </p>
+              </div>
+            </div>
+
+            {/* Payment before visits */}
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-3 p-3 md:p-4 rounded-2xl bg-white/50 border border-white/70 backdrop-blur-sm transition-all duration-200 hover:bg-white/70 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
+              <div className="flex-shrink-0 h-9 w-9 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] flex items-center justify-center text-base shadow-sm">
+                💳
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1 leading-tight">
+                  Payment before visits
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Bookings are confirmed once payment is received.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -428,6 +688,45 @@ export default function Home() {
 
       {/* Final CTA - outside container for full width */}
       <CtaFooter />
+
+      {/* Structured Footer */}
+      <footer className="w-full bg-white border-t border-gray-100 py-8 md:py-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Row 1: Policy links */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+            <Link 
+              href="#" 
+              className="text-xs text-slate-600 hover:text-slate-900 hover:underline underline-offset-4 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-xs text-slate-400">·</span>
+            <Link 
+              href="#" 
+              className="text-xs text-slate-600 hover:text-slate-900 hover:underline underline-offset-4 transition-colors"
+            >
+              Terms & Conditions
+            </Link>
+            <span className="text-xs text-slate-400">·</span>
+            <Link 
+              href="#" 
+              className="text-xs text-slate-600 hover:text-slate-900 hover:underline underline-offset-4 transition-colors"
+            >
+              Cookie Policy
+            </Link>
+          </div>
+          
+          {/* Row 2: Copyright */}
+          <p className="text-xs text-center text-slate-600 mb-2">
+            © {new Date().getFullYear()} Nat&apos;s Cats – Elite Home Care. All rights reserved.
+          </p>
+          
+          {/* Service note */}
+          <p className="text-xs text-center text-slate-500">
+            Nat&apos;s Cats is a home-visit only service (no overnight stays).
+          </p>
+        </div>
+      </footer>
     </>
   );
 }

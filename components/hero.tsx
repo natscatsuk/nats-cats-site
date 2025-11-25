@@ -83,16 +83,23 @@ export default function Hero() {
         })}
       </div>
 
-      <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-16">
-        <div className="hero-text w-full lg:w-auto">
+      {/* Mobile: text first, then illustration. Desktop: side-by-side. */}
+      <div className="flex flex-col-reverse md:flex-row items-center gap-6 sm:gap-8 lg:items-start lg:gap-16 lg:mr-[260px] xl:mr-[320px]">
+        <div className="hero-text w-full lg:w-auto order-2 lg:order-1 lg:mt-16 xl:mt-20">
           <FadeInUp className="space-y-6 text-center lg:text-left sm:space-y-8">
-            {/* Glass card wrapper for headline + tagline */}
-            <div
-              className="hero-glass-card fade-up-soft rounded-[32px] px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10"
-              style={{ animationDelay: "0.05s" }}
+            {/* Headline + tagline (hero box removed, keep typography/layout) */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: shouldReduceMotion ? 0 : 0.8, 
+                ease: "easeOut",
+                delay: shouldReduceMotion ? 0 : 0.1
+              }}
             >
-              <div className="space-y-6 relative">
-                <h1 className="hero-title font-serif text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold text-gray-900 leading-[1.05] relative pr-2 lg:pr-32 xl:pr-40">
+              <div className="space-y-5 sm:space-y-6 relative z-10 max-w-xl mx-auto lg:mx-0">
+                <h1 className="hero-title font-serif text-3xl sm:text-4xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold text-[#111827] leading-tight tracking-tight relative pr-2 lg:pr-32 xl:pr-40">
                   <span className="hero-premium-word">
                     <span
                       className="no-dot premium-title hero-premium-title"
@@ -117,19 +124,19 @@ export default function Hero() {
                   </span>{" "}
                   Home Cat Care in Harpenden
                 </h1>
-                <p className="text-sm sm:text-base text-gray-600 max-w-md sm:max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                <p className="text-sm md:text-base text-slate-700/90 max-w-md sm:max-w-xl mx-auto lg:mx-0 leading-relaxed">
                   Led by a qualified veterinary nurse — not a hobby sitter. Calm, clinical-grade care in the comfort of your cat&apos;s own home.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Buttons */}
-            <div className="flex w-full max-w-md mx-auto max-sm:flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+            {/* Buttons - stack vertically on mobile, horizontal from md upwards */}
+            <div className="flex flex-col md:flex-row w-full max-w-md mx-auto gap-3 md:gap-4 justify-center lg:justify-start mt-4">
               <Button
                 asChild
                 variant="primary"
                 size="lg"
-                className="hero-cta-primary w-full sm:w-auto"
+                className="hero-cta-primary w-full md:w-auto"
               >
                 <Link href="/booking">Book a Visit</Link>
               </Button>
@@ -137,23 +144,52 @@ export default function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="hero-cta-secondary w-full sm:w-auto"
+                className="hero-cta-secondary w-full md:w-auto"
               >
                 <Link href="/booking">Check Dates & Availability</Link>
               </Button>
             </div>
 
+            {/* 5-star review strip */}
+            <div className="flex items-center justify-center lg:justify-start mt-4">
+              <div className="relative inline-flex items-center gap-1.5">
+                <span 
+                  className="text-xl tracking-wide relative"
+                  style={{ 
+                    color: '#FFD86B',
+                    textShadow: '0 0 18px rgba(255, 216, 107, 0.5)'
+                  }}
+                >
+                  ★★★★★
+                </span>
+                <span className="text-sm font-semibold text-slate-700">5.0</span>
+                <span className="text-xs text-slate-600">from local cat owners</span>
+              </div>
+            </div>
+
             {/* Reassurance line */}
-            <p className="text-sm text-gray-500 italic">
+            <p className="mt-3 text-xs md:text-sm text-slate-600/80 italic">
               Serving Harpenden and surrounding areas within 3 miles.
             </p>
           </FadeInUp>
         </div>
 
-        <div
-          className="relative w-full flex items-center justify-center lg:justify-end overflow-visible mt-6 lg:mt-0"
+        <motion.div
+          className="relative flex w-full items-center justify-center overflow-visible mt-6 md:mt-0 lg:justify-end"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: shouldReduceMotion ? 0 : 0.8, 
+            ease: "easeOut",
+            delay: shouldReduceMotion ? 0 : 0.3
+          }}
         >
-          <div className="relative w-full max-w-[260px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-none lg:w-[520px] xl:w-[560px] overflow-visible lg:-translate-y-[10%] lg:-translate-x-[5%]">
+          <div className="relative w-[85%] mx-auto max-w-[260px] sm:max-w-[340px] md:max-w-[420px] md:w-full md:mx-0 lg:max-w-none lg:w-[520px] xl:w-[560px] overflow-visible lg:-translate-y-[10%] lg:-translate-x-[5%]">
+            {/* Subtle glow behind house + Nat */}
+            <div className="pointer-events-none absolute inset-0 flex items-end justify-center">
+              <div className="w-[70%] max-w-[420px] h-[70%] max-h-[420px] rounded-full bg-[radial-gradient(circle_at_center,#f8d9a6_0%,#f2c47a_35%,transparent_70%)] opacity-40 blur-2xl" />
+            </div>
+
             {/* House */}
             <motion.div
               initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 10 }}
@@ -163,27 +199,32 @@ export default function Hero() {
                 duration: shouldReduceMotion ? 0 : 0.6, 
                 ease: "easeOut" 
               }}
+              className="relative z-10"
             >
               <Image
                 src="/images/single-house.png"
                 alt="Harpenden townhouse"
                 width={560}
                 height={640}
-                className="w-full h-auto object-contain drop-shadow-[0_22px_45px_rgba(0,0,0,0.25)]"
+                className="w-full h-auto object-contain drop-shadow-[0_24px_60px_rgba(0,0,0,0.18)]"
                 priority
               />
             </motion.div>
 
-            {/* Nat on the doorstep */}
+            {/* Nat on the doorstep - with idle float animation */}
             <motion.div
               initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.98, y: shouldReduceMotion ? 0 : 8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: shouldReduceMotion ? 0 : 0
+              }}
               transition={{ 
                 delay: shouldReduceMotion ? 0 : 0.55, 
                 duration: shouldReduceMotion ? 0 : 0.55, 
-                ease: "easeOut" 
+                ease: "easeOut"
               }}
-              className="absolute bottom-[32px] left-1/2 -translate-x-1/2 h-auto w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] z-10"
+              className="absolute bottom-[32px] left-1/2 -translate-x-[55%] h-auto w-[120px] sm:w-[140px] md:w-[160px] lg:w-[180px] z-10 hero-nat-float"
             >
               <Image
                 src="/images/nat's-hero2.png"
@@ -195,7 +236,7 @@ export default function Hero() {
               />
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

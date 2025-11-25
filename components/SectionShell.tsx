@@ -26,7 +26,7 @@ export function SectionShell({
   return (
     <section
       id={id}
-      className="relative py-10 sm:py-12 lg:py-14 fade-up-soft"
+      className="relative py-16 md:py-20 lg:py-24 fade-up-soft"
       style={{ animationDelay }}
     >
       {/* soft radial spotlight */}
@@ -35,19 +35,21 @@ export function SectionShell({
       <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-10">
         {(eyebrow || title || subtitle) && (
           <FadeInWhenVisible>
-            <div className={`flex flex-col gap-2 ${textAlign} ${alignItems}`}>
+            <div
+              className={`flex flex-col gap-3 ${textAlign} ${alignItems} px-4 sm:px-0`}
+            >
               {eyebrow && (
-                <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-slate-600">
+                <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
                   {eyebrow}
                 </p>
               )}
               {title && (
-                <h2 className="text-[26px] sm:text-[28px] lg:text-[34px] font-bold leading-[1.15] text-[var(--nc-navy)]">
+                <h2 className="text-2xl md:text-4xl font-semibold leading-tight text-[var(--nc-navy)]">
                   {title}
                 </h2>
               )}
               {subtitle && (
-                <p className="mt-6 max-w-[640px] lg:max-w-[720px] text-base sm:text-[18px] lg:text-[20px] leading-[1.6] text-slate-700">
+                <p className="mt-4 md:mt-5 max-w-2xl lg:max-w-3xl text-sm md:text-base leading-relaxed text-slate-700/90">
                   {subtitle}
                 </p>
               )}

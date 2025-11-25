@@ -25,8 +25,8 @@ const pricingCards = [
   },
   {
     title: "Holiday & Weekend Visits",
-    price: "from £19",
-    priceNote: "per visit",
+    price: "£19",
+    priceNote: "weekend rate",
     subtitle: "Extra support while you're away",
     bullets: [
       "Priority weekend and peak-time booking",
