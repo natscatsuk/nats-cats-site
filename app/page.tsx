@@ -18,10 +18,18 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const StepIcon = ({ step }: { step: number }) => (
-  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--nc-blue-primary)] text-xs font-semibold text-white shadow-sm shadow-blue-500/40">
-    {step}
-      </div>
-  );
+  <div className="flex items-center gap-3 mb-6">
+    <div className="relative flex items-center justify-center h-11 w-11 rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] shadow-md transition-transform duration-200 group-hover:scale-110">
+      <span className="text-white text-xl">🐾</span>
+      <span className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-white text-[11px] font-semibold text-slate-700 flex items-center justify-center shadow-sm border border-slate-200">
+        {step}
+      </span>
+    </div>
+    <p className="text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">
+      Step {step}
+    </p>
+  </div>
+);
 
 export default function Home() {
   const BADGES = [
@@ -96,7 +104,7 @@ export default function Home() {
     },
     {
       step: 3,
-      title: "Daily updates & vet-level oversight",
+      title: "Daily updates & vet-level oversight from Nat",
       body: "While you're away, you'll receive updates, photos and honest feedback so you always know how your cat is doing.",
     },
   ];
@@ -288,26 +296,36 @@ export default function Home() {
           <SectionShell
             eyebrow="Simple, clinical-grade visit flow"
             title="How Nat's cat sitting works"
+            subtitle="Three calm, nurse-led steps from first chat to daily photo updates from home."
+            align="center"
             animationDelay="0.25s"
           >
-            <div className="feature-grid">
-              {steps.map((step, index) => (
-                <ScrollRevealCard key={index} delay={index * 0.05}>
-                  <AnimatedCard className="feature-card rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.04)] transition-colors duration-200 hover:bg-[#fff7ec]/100">
-                    <div className="feature-card-header">
-                      <div className="transition-transform duration-200 hover:scale-[1.03]">
-                        <StepIcon step={step.step} />
-                      </div>
-                    </div>
-                    <h3 className="feature-card-title">{step.title}</h3>
-                    <p className="feature-card-body">{step.body}</p>
-                  </AnimatedCard>
-                </ScrollRevealCard>
-              ))}
+            <div className="relative mt-8 md:mt-10 mb-4 md:mb-6">
+              {/* Connecting line behind cards on desktop */}
+              <div className="hidden lg:block absolute top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-slate-200/40 to-transparent z-0" />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto px-4 sm:px-0 relative z-10">
+                {steps.map((step, index) => (
+                  <ScrollRevealCard key={index} delay={index * 0.05}>
+                    <article
+                      className="group rounded-3xl bg-gradient-to-b from-white/80 to-[#fff6ea] border border-white/60 p-6 md:p-7 shadow-[0_18px_55px_rgba(0,0,0,0.09)] transition-all duration-200 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-xl flex flex-col h-full"
+                      aria-label={step.title}
+                    >
+                      <StepIcon step={step.step} />
+                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm md:text-[15px] leading-relaxed text-slate-700 flex-grow">
+                        {step.body}
+                      </p>
+                    </article>
+                  </ScrollRevealCard>
+                ))}
+              </div>
             </div>
             <FadeInWhenVisible delay={0.1}>
-              <p className="mt-6 text-center text-sm text-slate-500">
-                Home visits from <strong>£XX per visit</strong> · Daily photo updates included · Medication support available on request
+              <p className="mt-8 text-center text-xs md:text-sm text-slate-500">
+                Home visits from <strong>£15 per visit</strong> · Daily photo updates included · Medication support available on request
               </p>
             </FadeInWhenVisible>
           </SectionShell>
