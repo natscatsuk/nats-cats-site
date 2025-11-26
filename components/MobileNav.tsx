@@ -96,7 +96,12 @@ export default function MobileNav() {
       <div className="flex items-center gap-3 w-full px-4 py-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         <div className="flex items-center justify-start gap-2 min-w-max">
           {getHomePageNavItems().map((item) => {
-            const href = item.targetId ? `/#${item.targetId}` : item.href;
+            const isBooking = item.id === "booking";
+            const href = isBooking
+              ? "/booking"
+              : item.targetId
+              ? `/#${item.targetId}`
+              : item.href;
             const isActive = activeId === item.id;
 
             return (

@@ -92,18 +92,12 @@ export default function CtaFooter() {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Button
+                  asChild
                   type="button"
                   size="lg"
-                  onClick={() => {
-                    if (typeof document === "undefined") return;
-                    const el = document.getElementById("booking");
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
                   className="bg-white text-[#0052CC] hover:bg-gray-50 rounded-full shadow-[0_18px_45px_rgba(15,23,42,0.30)] px-10 py-6 text-base font-semibold transition-all duration-300 hover:-translate-y-[1px] hover:shadow-[0_28px_80px_rgba(255,255,255,0.4)] hover:ring-4 hover:ring-white/30 active:translate-y-[0px] active:shadow-[0_14px_30px_rgba(15,23,42,0.35)] w-full md:w-auto"
                 >
-                  Book a visit
+                  <Link href="/booking">Book a visit</Link>
                 </Button>
               </motion.div>
               <motion.div

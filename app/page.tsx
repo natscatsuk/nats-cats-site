@@ -14,7 +14,6 @@ import Features from "@/components/features";
 import VisitOptions from "@/components/VisitOptions";
 import AboutStrip from "@/components/about-strip";
 import CtaFooter from "@/components/cta-footer";
-import { BookingFormSection } from "@/components/BookingFormSection";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -39,33 +38,9 @@ const StepIcon = ({ step }: { step: number }) => (
   </div>
 );
 
+import { TRUST_BADGES } from "@/lib/trust-badges";
+
 export default function Home() {
-  const BADGES = [
-    {
-      title: "RCVS-Registered Veterinary Nurse",
-      src: "/images/badges/RCVS.png",
-    },
-    {
-      title: "Qualified Veterinary Nurse",
-      src: "/images/badges/Qualified.png",
-    },
-    {
-      title: "Fully Insured",
-      src: "/images/badges/insured.png",
-    },
-    {
-      title: "DBS Checked",
-      src: "/images/badges/dbs.png",
-    },
-    {
-      title: "Medication Trained",
-      src: "/images/badges/medication.png",
-    },
-    {
-      title: "Local Harpenden Specialist",
-      src: "/images/badges/local.png",
-    },
-  ];
 
   const benefits = [
     {
@@ -416,21 +391,21 @@ export default function Home() {
               className="mt-10 sm:mt-12 lg:mt-14"
             >
               <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                {BADGES.map((badge, index) => (
-                  <ScrollRevealCard key={badge.title} delay={index * 0.05}>
+                {TRUST_BADGES.map((badge, index) => (
+                  <ScrollRevealCard key={badge.id} delay={index * 0.05}>
                     {/* Standardized card styling: rounded-3xl, consistent shadow, padding */}
                     <AnimatedCard className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-[#fff7ec] border border-[#f1e2cf] text-center shadow-[0_18px_45px_rgba(0,0,0,0.06)] px-4 py-4 sm:px-5 sm:py-5 lg:px-7 lg:py-8 transition-colors duration-200 hover:bg-[#fff7ec]/100">
                       <div className="relative h-16 w-16 sm:h-20 sm:w-20 lg:h-20 lg:w-20 transition-transform duration-200 hover:scale-[1.03]">
                         <Image
-                          src={badge.src}
-                          alt={`${badge.title} certification badge`}
+                          src={badge.iconSrc}
+                          alt={badge.iconAlt}
                           fill
                           sizes="(max-width: 640px) 64px, 80px"
                           className="object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.18)]"
                         />
                       </div>
                       <p className="text-center text-sm sm:text-base leading-snug text-[#182235] font-medium">
-                        {badge.title}
+                        {badge.label}
                       </p>
                     </AnimatedCard>
                   </ScrollRevealCard>
@@ -566,9 +541,6 @@ export default function Home() {
 
       {/* Visit Options */}
       <VisitOptions />
-
-      {/* Booking form section */}
-      <BookingFormSection />
 
       {/* Section Divider */}
       <div className="section-divider" />

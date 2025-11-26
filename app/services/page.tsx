@@ -324,7 +324,7 @@ export default function Services() {
         </div>
       </SectionShell>
 
-      {/* CTA back to booking form on homepage */}
+      {/* CTA through to booking page */}
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-white/70 bg-white/90 shadow-[0_18px_55px_rgba(15,23,42,0.08)] px-6 py-8 sm:px-8 sm:py-9 text-center">
@@ -333,14 +333,14 @@ export default function Services() {
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mb-6 max-w-2xl mx-auto">
               Share your cats&apos; details and preferred dates using the booking form
-              on the homepage, and Nat will be in touch to confirm availability.
+              on the booking page, and Nat will be in touch to confirm availability.
             </p>
             <Button
               asChild
               size="lg"
               className="rounded-full px-8"
             >
-              <Link href="/#booking">Book a visit</Link>
+              <Link href="/booking">Book a visit</Link>
             </Button>
           </div>
         </div>

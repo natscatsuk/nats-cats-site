@@ -7,6 +7,7 @@ import { FadeInUp } from "@/components/ui/motion";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { HeroTrustStrip } from "@/components/HeroTrustStrip";
 
 export default function Hero() {
   const [catAnimation, setCatAnimation] = useState<any>(null);
@@ -31,7 +32,7 @@ export default function Hero() {
   return (
     <motion.section
       id="home-hero"
-      className="hero pt-12 pb-8 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-12"
+      className="hero pt-8 pb-6 sm:pt-10 sm:pb-8 lg:pt-14 lg:pb-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: "easeOut" }}
@@ -85,7 +86,7 @@ export default function Hero() {
 
       {/* Mobile: text first, then illustration. Desktop: side-by-side. */}
       <div className="flex flex-col-reverse md:flex-row items-center gap-6 sm:gap-8 lg:items-start lg:gap-16 lg:mr-[260px] xl:mr-[320px]">
-        <div className="hero-text w-full max-w-[90%] mx-auto lg:w-auto order-2 lg:order-1 lg:mt-16 xl:mt-20">
+        <div className="hero-text w-full max-w-[90%] mx-auto lg:w-auto order-2 lg:order-1 lg:mt-8 xl:mt-10">
           <FadeInUp className="space-y-5 text-center lg:text-left sm:space-y-6">
             {/* Headline + tagline (hero box removed, keep typography/layout) */}
             <motion.div
@@ -133,19 +134,13 @@ export default function Hero() {
             {/* Buttons - stack vertically on mobile, horizontal from md upwards */}
             <div className="flex flex-col md:flex-row w-full max-w-md mx-auto gap-3 md:gap-4 justify-center lg:justify-start mt-4">
               <Button
+                asChild
                 type="button"
                 variant="primary"
                 size="lg"
                 className="hero-cta-primary w-full md:w-auto"
-                onClick={() => {
-                  if (typeof document === "undefined") return;
-                  const el = document.getElementById("booking");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
               >
-                Book a Visit
+                <Link href="/booking">Book a Visit</Link>
               </Button>
               <Button
                 asChild
@@ -178,6 +173,8 @@ export default function Hero() {
             <p className="mt-3 text-xs md:text-sm text-slate-600/80 italic">
               Serving Harpenden and surrounding areas within 3 miles.
             </p>
+
+            <HeroTrustStrip />
           </FadeInUp>
         </div>
 

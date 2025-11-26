@@ -10,6 +10,10 @@ type ContactFormData = {
   message: string;
 };
 
+type ContactApiResponse =
+  | { success: true }
+  | { success: false; error: string };
+
 type ContactErrors = Partial<Record<keyof ContactFormData, string>> & {
   general?: string;
 };
@@ -26,7 +30,8 @@ export function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>(initialData);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -47,20 +52,48 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(false);
+    setSuccessMessage(null);
+    setErrorMessage(null);
     if (!validate()) return;
 
     setIsSubmitting(true);
     try {
-      console.log("Contact form:", formData);
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      setSubmitted(true);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          topic: formData.reason,
+          message: formData.message,
+        }),
+      });
+
+      const data = (await response.json()) as ContactApiResponse;
+
+      if (!response.ok || !data.success) {
+        const message =
+          !response.ok && "error" in data
+            ? data.error
+            : "Something went wrong sending your message. Please try again in a moment.";
+        setErrorMessage(message);
+        setErrors((prev) => ({ ...prev, general: undefined }));
+        return;
+      }
+
       setFormData(initialData);
+      setErrors({});
+      setSuccessMessage(
+        "Thank you – your message has been sent. Nat will reply as soon as she can."
+      );
     } catch (err) {
-      setErrors((prev) => ({
-        ...prev,
-        general: "Something went wrong. Please try again in a moment.",
-      }));
+      console.error("Error submitting contact form:", err);
+      setErrorMessage(
+        "Something went wrong sending your message. Please try again in a moment."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -73,14 +106,14 @@ export function ContactForm() {
 
   return (
     <div className="rounded-3xl bg-white/85 backdrop-blur border border-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.08)] p-6 sm:p-8">
-      {submitted && (
+      {successMessage && (
         <div className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50/80 px-4 py-3 text-xs sm:text-sm text-emerald-800">
-          Thank you – your message has been sent. Nat will reply as soon as she can.
+          {successMessage}
         </div>
       )}
-      {errors.general && (
+      {errorMessage && (
         <div className="mb-4 rounded-2xl border border-red-200 bg-red-50/80 px-4 py-3 text-xs sm:text-sm text-red-700">
-          {errors.general}
+          {errorMessage}
         </div>
       )}
 

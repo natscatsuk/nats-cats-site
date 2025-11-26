@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+type BookingApiResponse =
+  | { success: true }
+  | { success: false; error: string };
+
 type BookingFormData = {
   name: string;
   email: string;
@@ -28,14 +32,21 @@ const initialFormData: BookingFormData = {
   details: "",
 };
 
-export function BookingFormSection() {
+type BookingSectionProps = {
+  id?: string;
+};
+
+export function BookingSection({ id = "booking" }: BookingSectionProps) {
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<BookingErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -46,10 +57,14 @@ export function BookingFormSection() {
     const newErrors: BookingErrors = {};
 
     if (!formData.name.trim()) newErrors.name = "Please enter your full name.";
-    if (!formData.email.trim()) newErrors.email = "Please enter your email address.";
-    if (!formData.cats.trim()) newErrors.cats = "Please tell Nat how many cats you have.";
-    if (!formData.visitType.trim()) newErrors.visitType = "Please choose a visit type.";
-    if (!formData.dates.trim()) newErrors.dates = "Please share your preferred dates.";
+    if (!formData.email.trim())
+      newErrors.email = "Please enter your email address.";
+    if (!formData.cats.trim())
+      newErrors.cats = "Please tell Nat how many cats you have.";
+    if (!formData.visitType.trim())
+      newErrors.visitType = "Please choose a visit type.";
+    if (!formData.dates.trim())
+      newErrors.dates = "Please share your preferred dates.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,22 +72,52 @@ export function BookingFormSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(false);
+    setSuccessMessage(null);
+    setErrorMessage(null);
 
     if (!validate()) return;
 
     setIsSubmitting(true);
     try {
-      // Placeholder for future integration
-      console.log("Booking enquiry:", formData);
-      await new Promise((resolve) => setTimeout(resolve, 600));
-      setSubmitted(true);
+      const response = await fetch("/api/book-visit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          area: formData.area,
+          cats: formData.cats,
+          visitType: formData.visitType,
+          dates: formData.dates,
+          details: formData.details,
+        }),
+      });
+
+      const data = (await response.json()) as BookingApiResponse;
+
+      if (!response.ok || !data.success) {
+        const message =
+          !response.ok && "error" in data
+            ? data.error
+            : "Something went wrong sending your enquiry. Please try again in a moment.";
+        setErrorMessage(message);
+        setErrors((prev) => ({ ...prev, general: undefined }));
+        return;
+      }
+
       setFormData(initialFormData);
+      setErrors({});
+      setSuccessMessage(
+        "Thank you – your enquiry has been sent. Nat will be in touch to confirm availability."
+      );
     } catch (err) {
-      setErrors((prev) => ({
-        ...prev,
-        general: "Something went wrong. Please try again in a moment.",
-      }));
+      console.error("Error submitting booking enquiry:", err);
+      setErrorMessage(
+        "Something went wrong sending your enquiry. Please try again in a moment."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -86,7 +131,7 @@ export function BookingFormSection() {
 
   return (
     <section
-      id="booking"
+      id={id}
       className="w-full py-16 sm:py-20 lg:py-24 bg-transparent"
       aria-labelledby="booking-heading"
     >
@@ -108,19 +153,22 @@ export function BookingFormSection() {
         </div>
 
         <div className="rounded-3xl bg-white/80 backdrop-blur border border-white/70 shadow-[0_18px_45px_rgba(15,23,42,0.08)] p-6 sm:p-8">
-          {submitted && (
+          {successMessage && (
             <div className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50/80 px-4 py-3 text-xs sm:text-sm text-emerald-800">
-              Thank you – your enquiry has been recorded. Nat will be in touch soon to
-              confirm your visit details.
+              {successMessage}
             </div>
           )}
-          {errors.general && (
+          {errorMessage && (
             <div className="mb-4 rounded-2xl border border-red-200 bg-red-50/80 px-4 py-3 text-xs sm:text-sm text-red-700">
-              {errors.general}
+              {errorMessage}
             </div>
           )}
 
-          <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit} noValidate>
+          <form
+            className="space-y-4 sm:space-y-5"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className={labelClasses}>
@@ -272,7 +320,7 @@ export function BookingFormSection() {
                 className="inline-flex w-full md:w-auto items-center justify-center rounded-full bg-[#0b63ff] px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_40px_rgba(11,99,255,0.35)] transition hover:bg-[#0a57e6] focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-400"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending enquiry..." : "Request your visit"}
+                {isSubmitting ? "Sending..." : "Request your visit"}
               </button>
             </div>
           </form>

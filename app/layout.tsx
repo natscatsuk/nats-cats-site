@@ -131,10 +131,10 @@ export default function RootLayout({
                     Navigate
                   </p>
                   <ul className="space-y-1.5 text-slate-600">
-                    <li><a href="#home" className="hover:text-slate-900">Home</a></li>
-                    <li><a href="#services" className="hover:text-slate-900">Services</a></li>
-                    <li><a href="#booking" className="hover:text-slate-900">Booking</a></li>
-                    <li><a href="#faqs" className="hover:text-slate-900">FAQs</a></li>
+                    <li><Link href="/" className="hover:text-slate-900">Home</Link></li>
+                    <li><Link href="/services" className="hover:text-slate-900">Services</Link></li>
+                    <li><Link href="/booking" className="hover:text-slate-900">Booking</Link></li>
+                    <li><Link href="/faqs" className="hover:text-slate-900">FAQs</Link></li>
                   </ul>
                 </div>
                 <div className="text-center md:text-left">
