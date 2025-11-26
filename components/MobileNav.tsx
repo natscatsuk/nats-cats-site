@@ -90,11 +90,11 @@ export default function MobileNav() {
 
   return (
     <nav
-      className="lg:hidden sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-slate-200"
+      className="md:hidden sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200"
       aria-label="Mobile section navigation"
     >
-      <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex items-center justify-start gap-2 px-4 py-3 min-w-max snap-x snap-mandatory">
+      <div className="flex items-center gap-3 w-full px-4 py-3 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+        <div className="flex items-center justify-start gap-2 min-w-max">
           {getHomePageNavItems().map((item) => {
             const href = item.targetId ? `/#${item.targetId}` : item.href;
             const isActive = activeId === item.id;

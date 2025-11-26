@@ -27,7 +27,7 @@ export default function AboutStrip() {
           <div className="relative w-full flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md rounded-2xl lg:rounded-[24px] shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-100/60 overflow-hidden bg-white/98 border border-[#f1e3c6]/60 flex items-center justify-center aspect-square max-h-[500px]">
               <Image
-                src="/Cartoon Vet.png"
+                src="/images/vet-nurse.png"
                 alt="Cartoon illustration of Nat, your vet-nurse cat carer"
                 width={500}
                 height={500}

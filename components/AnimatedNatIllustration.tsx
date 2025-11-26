@@ -27,7 +27,7 @@ export function AnimatedNatIllustration() {
       whileHover={shouldReduceMotion ? {} : { y: -4 }}
     >
       <Image
-        src="/Cartoon Vet.png"
+        src="/images/vet-nurse.png"
         alt="Cartoon illustration of Nat, your vet-nurse cat carer"
         width={500}
         height={500}

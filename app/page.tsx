@@ -14,6 +14,7 @@ import Features from "@/components/features";
 import VisitOptions from "@/components/VisitOptions";
 import AboutStrip from "@/components/about-strip";
 import CtaFooter from "@/components/cta-footer";
+import { BookingFormSection } from "@/components/BookingFormSection";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -149,6 +150,33 @@ export default function Home() {
     },
   ];
 
+  const whyChooseCards = [
+    {
+      title: "Fully Insured & DBS Checked",
+      body:
+        "Nat is fully insured and DBS checked, so you can relax knowing your home and your cats are in safe hands.",
+      icon: "🛡️",
+    },
+    {
+      title: "5★ Local Reputation",
+      body:
+        "Trusted by Harpenden families for reliable, loving and professional cat care – with returning clients and word-of-mouth referrals.",
+      icon: "⭐",
+    },
+    {
+      title: "Daily Photo & Video Updates",
+      body:
+        "Get daily photos and updates straight to your phone, so you can see exactly how happy and relaxed your cats are.",
+      icon: "📸",
+    },
+    {
+      title: "Stress-Free for You & Your Cat",
+      body:
+        "No catteries, no travel stress – your cats stay comfortable in their own home while you enjoy your time away.",
+      icon: "🐾",
+    },
+  ];
+
   return (
     <>
       {/* 
@@ -214,6 +242,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Nat Section – moved up to build early personal trust */}
+      <FadeInSection delay={0.1}>
+        <SectionShell
+          id="about-nat"
+          eyebrow="About Nat"
+          title="Meet Nat – Your Vet-Nurse Cat Carer"
+          subtitle="Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments."
+          align="center"
+          animationDelay="0.4s"
+        >
+          <FadeInWhenVisible>
+            <div className="mx-auto grid max-w-5xl items-center gap-8 lg:gap-12 sm:grid-cols-2">
+              {/* Left: Copy card */}
+              <div className="order-2 sm:order-1">
+                <div className="rounded-3xl border border-[#f1e2cf] bg-[#fff7ec] p-6 lg:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.04)] text-left">
+                  <h3 className="text-xl lg:text-2xl font-semibold text-slate-900 mb-4">
+                    Your Vet-Nurse Cat Carer
+                  </h3>
+                  <div className="space-y-4 text-base sm:text-[16px] text-slate-600 leading-relaxed">
+                    <p>
+                      Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat&apos;s Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
+                    </p>
+
+                    {/* Bullet points */}
+                    <ul className="space-y-3 mt-6">
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">RCVS-registered veterinary nurse</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">Fully insured & DBS checked</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
+                        <span className="text-sm sm:text-base">Experienced with senior and special-needs cats</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Illustration card */}
+              <div className="order-1 sm:order-2 flex justify-center">
+                <AnimatedNatIllustration />
+              </div>
+            </div>
+          </FadeInWhenVisible>
+        </SectionShell>
+      </FadeInSection>
+
+      {/* Section Divider */}
+      <div className="section-divider" />
+
       {/* Services at a Glance Strip */}
       <section className="w-full py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -273,6 +355,42 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Why Choose Nat's Cats - premium trust/benefits section */}
+      <FadeInSection delay={0.08}>
+        <section className="py-16 md:py-20 lg:py-24">
+          <SectionShell
+            id="why-nats-cats"
+            align="center"
+            eyebrow="Why Choose Nat's Cats"
+            title="Why Choose Nat's Cats?"
+            subtitle="Premium in-home cat care for Harpenden families who want total peace of mind."
+            animationDelay="0.2s"
+          >
+            <div className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:gap-7">
+              {whyChooseCards.map((card, index) => (
+                <ScrollRevealCard key={card.title} delay={index * 0.06}>
+                  <article
+                    className="flex h-full flex-col rounded-3xl border border-white/70 bg-gradient-to-b from-white/90 to-[#fff7ec] p-6 md:p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition-transform transition-shadow duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,0.14)]"
+                  >
+                    <div className="mb-4 flex items-center justify-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#1c7ff2] to-[#5bb6ff] text-white shadow-[0_14px_32px_rgba(15,23,42,0.35)] text-xl">
+                        <span aria-hidden="true">{card.icon}</span>
+                      </div>
+                    </div>
+                    <h3 className="text-base md:text-lg font-semibold text-slate-900 text-center">
+                      {card.title}
+                    </h3>
+                    <p className="mt-3 text-sm md:text-[15px] leading-relaxed text-slate-700 text-center">
+                      {card.body}
+                    </p>
+                  </article>
+                </ScrollRevealCard>
+              ))}
+            </div>
+          </SectionShell>
+        </section>
+      </FadeInSection>
 
       {/* Credentials Section - peeks under hero on desktop */}
       <FadeInSection>
@@ -448,6 +566,9 @@ export default function Home() {
 
       {/* Visit Options */}
       <VisitOptions />
+
+      {/* Booking form section */}
+      <BookingFormSection />
 
       {/* Section Divider */}
       <div className="section-divider" />
@@ -635,57 +756,6 @@ export default function Home() {
       {/* Section Divider */}
       <div className="section-divider" />
 
-      {/* About Nat Section */}
-      <FadeInSection delay={0.1}>
-        <SectionShell
-          id="about-nat"
-          eyebrow="About Nat"
-          title="Meet Nat – Your Vet-Nurse Cat Carer"
-          subtitle="Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments."
-          align="center"
-          animationDelay="0.4s"
-        >
-          <FadeInWhenVisible>
-            <div className="mx-auto grid max-w-5xl items-center gap-8 lg:gap-12 sm:grid-cols-2">
-              {/* Left: Copy card */}
-              <div className="order-2 sm:order-1">
-                <div className="rounded-3xl border border-[#f1e2cf] bg-[#fff7ec] p-6 lg:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.04)] text-left">
-                  <h3 className="text-xl lg:text-2xl font-semibold text-slate-900 mb-4">
-                    Your Vet-Nurse Cat Carer
-                  </h3>
-                  <div className="space-y-4 text-base sm:text-[16px] text-slate-600 leading-relaxed">
-                    <p>
-                      Nat is a qualified veterinary nurse with extensive experience supporting cats of all ages and temperaments. Nat&apos;s Cats was created to offer calm, welfare-focused home care for cats who deserve more than a standard pet sitter.
-                    </p>
-                    
-                    {/* Bullet points */}
-                    <ul className="space-y-3 mt-6">
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
-                        <span className="text-sm sm:text-base">RCVS-registered veterinary nurse</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
-                        <span className="text-sm sm:text-base">Fully insured & DBS checked</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--nc-blue-primary)]" />
-                        <span className="text-sm sm:text-base">Experienced with senior and special-needs cats</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Right: Illustration card */}
-              <div className="order-1 sm:order-2 flex justify-center">
-                <AnimatedNatIllustration />
-              </div>
-            </div>
-          </FadeInWhenVisible>
-        </SectionShell>
-      </FadeInSection>
-
       {/* Final CTA - outside container for full width */}
       <CtaFooter />
 
@@ -695,14 +765,14 @@ export default function Home() {
           {/* Row 1: Policy links */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
             <Link 
-              href="#" 
+              href="/privacy" 
               className="text-xs text-slate-600 hover:text-slate-900 hover:underline underline-offset-4 transition-colors"
             >
               Privacy Policy
             </Link>
             <span className="text-xs text-slate-400">·</span>
             <Link 
-              href="#" 
+              href="/terms" 
               className="text-xs text-slate-600 hover:text-slate-900 hover:underline underline-offset-4 transition-colors"
             >
               Terms & Conditions

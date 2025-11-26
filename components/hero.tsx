@@ -85,8 +85,8 @@ export default function Hero() {
 
       {/* Mobile: text first, then illustration. Desktop: side-by-side. */}
       <div className="flex flex-col-reverse md:flex-row items-center gap-6 sm:gap-8 lg:items-start lg:gap-16 lg:mr-[260px] xl:mr-[320px]">
-        <div className="hero-text w-full lg:w-auto order-2 lg:order-1 lg:mt-16 xl:mt-20">
-          <FadeInUp className="space-y-6 text-center lg:text-left sm:space-y-8">
+        <div className="hero-text w-full max-w-[90%] mx-auto lg:w-auto order-2 lg:order-1 lg:mt-16 xl:mt-20">
+          <FadeInUp className="space-y-5 text-center lg:text-left sm:space-y-6">
             {/* Headline + tagline (hero box removed, keep typography/layout) */}
             <motion.div
               className="relative"
@@ -133,12 +133,19 @@ export default function Hero() {
             {/* Buttons - stack vertically on mobile, horizontal from md upwards */}
             <div className="flex flex-col md:flex-row w-full max-w-md mx-auto gap-3 md:gap-4 justify-center lg:justify-start mt-4">
               <Button
-                asChild
+                type="button"
                 variant="primary"
                 size="lg"
                 className="hero-cta-primary w-full md:w-auto"
+                onClick={() => {
+                  if (typeof document === "undefined") return;
+                  const el = document.getElementById("booking");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
               >
-                <Link href="/booking">Book a Visit</Link>
+                Book a Visit
               </Button>
               <Button
                 asChild
